@@ -1,0 +1,5 @@
+Record=TopLevelDocument|FileName=CONN.SchDoc
+Record=SheetSymbol|SourceDocument=CONN.SchDoc|Designator=U_DISPLAY|SchDesignator=U_DISPLAY|FileName=DISPLAY.SchDoc|SymbolType=Normal|RawFileName=DISPLAY.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=CONN.SchDoc|Designator=U_MCU|SchDesignator=U_MCU|FileName=MCU.SchDoc|SymbolType=Normal|RawFileName=MCU.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=CONN.SchDoc|Designator=U_POWER|SchDesignator=U_POWER|FileName=POWER.SchDoc|SymbolType=Normal|RawFileName=POWER.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=CONN.SchDoc|Designator=U_SERVO|SchDesignator=U_SERVO|FileName=SERVO.SchDoc|SymbolType=Normal|RawFileName=SERVO.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 

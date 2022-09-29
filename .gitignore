@@ -1,3 +1,18 @@
+
+*History/
+*Project Logs for GUITAR/
+*Project Outputs for GUITAR/
+*.vscode/
+*build/
+
+*.log
+*.rar
+*.Dat
+*.SchDocPreview
+*.PrjPCBStructurePreview
+
+
+
 # Prerequisites
 *.d
 
@@ -50,3 +65,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+
+
