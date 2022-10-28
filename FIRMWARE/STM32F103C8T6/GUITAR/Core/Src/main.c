@@ -25,6 +25,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdbool.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
 
 /* USER CODE END Includes */
 
@@ -45,13 +49,17 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+char usart2_buffer[50];
+uint8_t usart2_index = 0;
+char usart2_char = '\0';
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -94,6 +102,8 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, SET);
 
   /* USER CODE END 2 */
 
@@ -104,6 +114,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    HAL_IWDG_Refresh(&hiwdg);
+    // HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -149,6 +162,28 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == USART2)
+  {
+    usart2_buffer[usart2_index] = usart2_char;
+    if (usart2_buffer[usart2_index] == 0xCD)
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+      usart2_index = 0;
+      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
+      usart2_char = '\0';
+    }
+    usart2_index++;
+    if (usart2_index > 40)
+    {
+      usart2_index = 0;
+      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
+      usart2_char = '\0';
+    }
+  }
+  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
+}
 
 /* USER CODE END 4 */
 
