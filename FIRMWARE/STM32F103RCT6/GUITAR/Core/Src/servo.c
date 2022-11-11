@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * servo.c
  *
@@ -8,6 +9,8 @@
  *		Truong.bvd202543@sis.hust.edu.vn
  *
  */
+=======
+>>>>>>> 7838645ba1edd9e342754fca7a753f44d7a3da7a
 #include "main.h"
 #include "tim.h"
 
@@ -24,6 +27,7 @@ void Servo_Init(servo_t *servo, TIM_HandleTypeDef *_htim, uint32_t _channel)
 	HAL_TIM_PWM_Start(servo->htim, servo->channel);
 }
 
+<<<<<<< HEAD
 //
 //	map help function
 //
@@ -56,3 +60,14 @@ void Servo_SetAngleFine(servo_t *servo, float angle)
 	  __HAL_TIM_SET_COMPARE(servo->htim, servo->channel, tmp);
 }
 
+=======
+void Set_servo_5p(servo_t *servo)
+{
+    __HAL_TIM_SET_COMPARE(servo->htim, servo->channel, 5);
+}
+
+void Set_servo_9p(servo_t *servo)
+{
+    __HAL_TIM_SET_COMPARE(servo->htim, servo->channel, 9);
+}
+>>>>>>> 7838645ba1edd9e342754fca7a753f44d7a3da7a
