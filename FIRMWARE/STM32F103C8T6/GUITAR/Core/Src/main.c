@@ -31,7 +31,7 @@
 #include "string.h"
 
 /* USER CODE END Includes */
-
+#include "servo.h"
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -49,11 +49,59 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-char usart2_buffer[50];
-uint8_t usart2_index = 0;
-char usart2_char = '\0';
+uint32_t bit[500] = {};
 
+  ///// Khoang 3
+    servo_t servo_k_3_1 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_2 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_3 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_4 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_5 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_6 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
 
+////// Khoang 4
+    servo_t servo_k_4_1 = {
+    &htim1,
+    TIM_CHANNEL_4
+  };
+    servo_t servo_k_4_2 = {
+    &htim1,
+    TIM_CHANNEL_3
+  };
+    servo_t servo_k_4_3 = {
+    &htim1,
+    TIM_CHANNEL_2
+  };
+    servo_t servo_k_4_4 = {
+    &htim1,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_4_5 = {
+    &htim2,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_4_6 = {
+    &htim2,
+    TIM_CHANNEL_2
+  };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,7 +131,19 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  Servo_Init(&servo_k_3_1, servo_k_3_1.htim, servo_k_3_1.channel);
+  Servo_Init(&servo_k_3_2, servo_k_3_2.htim, servo_k_3_2.channel);
+  Servo_Init(&servo_k_3_3, servo_k_3_3.htim, servo_k_3_3.channel);
+  Servo_Init(&servo_k_3_4, servo_k_3_4.htim, servo_k_3_4.channel);
+  Servo_Init(&servo_k_3_5, servo_k_3_5.htim, servo_k_3_5.channel);
+  Servo_Init(&servo_k_3_6, servo_k_3_6.htim, servo_k_3_6.channel);
 
+  Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
+  Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
+  Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
+  Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
+  Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -102,8 +162,12 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, SET);
+  // for(uint8_t u = 0; u < 25, u= u+8)
+  // {
+  //   HAL_UART_Receive(&huart2, &bit, sizeof(bit), 100);
+  //   bit = bit << u;
+  // }
+  
 
   /* USER CODE END 2 */
 
@@ -166,23 +230,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART2)
   {
-    usart2_buffer[usart2_index] = usart2_char;
-    if (usart2_buffer[usart2_index] == 0xCD)
-    {
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-      usart2_index = 0;
-      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
-      usart2_char = '\0';
-    }
-    usart2_index++;
-    if (usart2_index > 40)
-    {
-      usart2_index = 0;
-      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
-      usart2_char = '\0';
-    }
+  
   }
-  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
+  // HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
 }
 
 /* USER CODE END 4 */

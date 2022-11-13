@@ -45,7 +45,6 @@ Core/Src/usart.c \
 Core/Src/servo.c \
 Core/Src/stm32f1xx_it.c \
 Core/Src/stm32f1xx_hal_msp.c \
-Core/Src/servo.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_iwdg.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c \
@@ -193,7 +192,7 @@ clean:
 
 
 flash: all
-	openocd -f interface/stlink.cfg -f target/stm32f1x_real.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset 
 
 
 #######################################
