@@ -298,11 +298,17 @@ int main(void)
   Servo_Init(&servo_w_6, servo_w_6.htim, servo_w_6.channel);
 
   Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
+  Set_servo_5p(&servo_k_1_1);
   Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
+  Set_servo_5p(&servo_k_1_2);
   Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
+  Set_servo_5p(&servo_k_1_3);
   Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
+  Set_servo_5p(&servo_k_1_4);
   Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
+  Set_servo_5p(&servo_k_1_5);
   Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
+  Set_servo_5p(&servo_k_1_6);
 
   Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
   Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
@@ -329,8 +335,8 @@ int main(void)
     {
       uint32_t bit = Bai1[i];
 
-      if((bit & 0x0000001)) Set_servo_5p(&servo_w_2);            // bit 1 trong not nhac
-      else Set_servo_9p(&servo_w_2);
+      if((bit & 0x0000001)) Set_servo_5p(&servo_k_1_1);            // bit 1 trong not nhac
+      else Set_servo_9p(&servo_k_1_1);
 
       if(((bit >> 1) & 0x00000001)) Set_servo_5p(&servo_k_1_2);
       else Set_servo_9p(&servo_k_1_2);
@@ -365,6 +371,8 @@ int main(void)
       if(((bit >> 11) & 0x00000001)) Set_servo_5p(&servo_k_2_6);
       else Set_servo_9p(&servo_k_2_6);
 
+      HAL_Delay(250);
+
       if(((bit >> 24) & 0x01)) {Set_servo_5p(&servo_w_1);}
       else 
         {
@@ -386,7 +394,6 @@ int main(void)
           // HAL_Delay(100);
           // Set_servo_5p(&servo_w_3);
         }
-
       if(((bit >> 27) & 0x00000001)) {Set_servo_5p(&servo_w_4);}
       else 
         {
@@ -394,7 +401,6 @@ int main(void)
           // HAL_Delay(100);
           // Set_servo_5p(&servo_w_4);
         }
-
       if(((bit >> 28) & 0x00000001)) {Set_servo_5p(&servo_w_5);}
       else 
         {
@@ -402,7 +408,6 @@ int main(void)
           // HAL_Delay(100);
           // Set_servo_5p(&servo_w_5);
         }
-
       if(((bit >> 29) & 0x00000001)) {Set_servo_5p(&servo_w_6);}
       else 
         {
@@ -413,15 +418,15 @@ int main(void)
 
       if((i != 1) && (i != 2) && (i != 3) && (i != 4) && (i != 5) && (i != 12) && (i != 19) && (i != 24) && (i != 25) && (i != 32) && (i != 39) && (i != 47) && (i != 52) && (i != 54) && (i != 59) && (i != 76) && (i != 85) && (i != 88) && (i != 95))
         {
-          HAL_Delay(200);
+          HAL_Delay(250);
         }
       else if((i ==1) || (i ==2) || (i ==3) || (i ==4) || (i ==5) || (i ==12) || (i ==19) || (i ==24) || (i ==25) || (i ==39) || (i ==47) || (i ==52) || (i ==59) || (i ==76) || (i ==85) || (i ==88) || (i ==95))
         {
-          HAL_Delay(400);
+          HAL_Delay(750);
         }
       else if((i ==32) || ( i == 54))
         {
-          HAL_Delay(600);
+          HAL_Delay(1250);
         }
     }
   }
