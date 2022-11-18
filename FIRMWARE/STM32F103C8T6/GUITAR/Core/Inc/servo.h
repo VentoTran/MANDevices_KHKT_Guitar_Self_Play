@@ -23,6 +23,6 @@ typedef struct {
 void Set_servo_5p(servo_t *servo);
 void Servo_Init(servo_t *servo, TIM_HandleTypeDef *_htim, uint32_t _channel);
 void Set_servo_9p(servo_t *servo);
-// void Set_servo(uint32_t t);
+void Set_servo(uint32_t t);
 
 #endif /* SERVO_H_ */

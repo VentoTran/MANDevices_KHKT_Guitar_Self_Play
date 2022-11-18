@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "iwdg.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -29,7 +28,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
-
+#include "servo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,17 +48,88 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-char usart2_buffer[50];
-uint8_t usart2_index = 0;
-char usart2_char = '\0';
 
+  ///// Khoang 3
+    servo_t servo_k_3_1 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_2 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_3 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_4 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_5 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_3_6 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
 
+////// Khoang 4
+    servo_t servo_k_4_1 = {
+    &htim1,
+    TIM_CHANNEL_4
+  };
+    servo_t servo_k_4_2 = {
+    &htim1,
+    TIM_CHANNEL_3
+  };
+    servo_t servo_k_4_3 = {
+    &htim1,
+    TIM_CHANNEL_2
+  };
+    servo_t servo_k_4_4 = {
+    &htim1,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_4_5 = {
+    &htim2,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_4_6 = {
+    &htim2,
+    TIM_CHANNEL_2
+  };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+int buf_index = 0;
+int ibuf_index = 0;
+uint8_t data;
+uint8_t buffer[4];
+uint32_t ibuffer[500] = {0};
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if(huart == &huart2)
+  {
+    if(buf_index == 0 && data == 254)
+    {
+
+    }
+    else
+    {
+      buffer[buf_index++] = data;
+      if(buf_index == 4)
+      {
+        ibuffer[ibuf_index++] = (uint32_t)(buffer[3] << 24) | (uint32_t)(buffer[2] << 16) | (uint32_t)(buffer[1] << 8) | (uint32_t)buffer[0];
+        buf_index = 0;
+      }
+    }
+    HAL_UART_Receive_IT(&huart2, &data, 1);
+  }
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -83,7 +153,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -95,16 +165,28 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_IWDG_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, SET);
+  Servo_Init(&servo_k_3_1, servo_k_3_1.htim, servo_k_3_1.channel);
+  Servo_Init(&servo_k_3_2, servo_k_3_2.htim, servo_k_3_2.channel);
+  Servo_Init(&servo_k_3_3, servo_k_3_3.htim, servo_k_3_3.channel);
+  Servo_Init(&servo_k_3_4, servo_k_3_4.htim, servo_k_3_4.channel);
+  Servo_Init(&servo_k_3_5, servo_k_3_5.htim, servo_k_3_5.channel);
+  Servo_Init(&servo_k_3_6, servo_k_3_6.htim, servo_k_3_6.channel);
 
+  Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
+  Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
+  Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
+  Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
+  Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
+
+  HAL_UART_Receive_IT(&huart2, &data, 1);
+  HAL_Delay(10000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,9 +196,62 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_IWDG_Refresh(&hiwdg);
-    // HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-    HAL_Delay(1000);
+    uint32_t Bai1 = ibuffer;
+    for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
+    {
+      uint32_t bit = Bai1[i];
+
+      if(((bit >> 12) & 0x00000001)) Set_servo_5p(&servo_k_3_1);
+      else Set_servo_9p(&servo_k_3_1);
+
+      if(((bit >> 13) & 0x00000001)) Set_servo_5p(&servo_k_3_2);
+      else Set_servo_9p(&servo_k_3_2);
+
+      if(((bit >> 14) & 0x00000001)) Set_servo_5p(&servo_k_3_3);
+      else Set_servo_9p(&servo_k_3_3);
+
+      if(((bit >> 15) & 0x00000001)) Set_servo_5p(&servo_k_3_4);
+      else Set_servo_9p(&servo_k_3_4);
+
+      if(((bit >> 16) & 0x00000001)) Set_servo_5p(&servo_k_3_5);
+      else Set_servo_9p(&servo_k_3_5);
+
+      if(((bit >> 17) & 0x00000001)) Set_servo_5p(&servo_k_3_6);
+      else Set_servo_9p(&servo_k_3_6);
+
+      if(((bit >> 18) & 0x00000001)) Set_servo_5p(&servo_k_4_1);
+      else Set_servo_9p(&servo_k_4_1);
+
+      if(((bit >> 19) & 0x00000001)) Set_servo_5p(&servo_k_4_2);
+      else Set_servo_9p(&servo_k_4_2);
+
+      if(((bit >> 20) & 0x00000001)) Set_servo_5p(&servo_k_4_3);
+      else Set_servo_9p(&servo_k_4_3);
+
+      if(((bit >> 21) & 0x00000001)) Set_servo_5p(&servo_k_4_4);
+      else Set_servo_9p(&servo_k_4_4);
+
+      if(((bit >> 22) & 0x00000001)) Set_servo_5p(&servo_k_4_5);
+      else Set_servo_9p(&servo_k_4_5);
+
+      if(((bit >> 23) & 0x00000001)) Set_servo_5p(&servo_k_4_6);
+      else Set_servo_9p(&servo_k_4_6);
+
+      if((i != 1) && (i != 2) && (i != 3) && (i != 4) && (i != 5) && (i != 12) && (i != 19) && (i != 24) && (i != 25) && (i != 32) && (i != 39) && (i != 47) && (i != 52) && (i != 54) && (i != 59) && (i != 76) && (i != 85) && (i != 88) && (i != 95))
+        {
+          HAL_Delay(200);
+        }
+      else if((i ==1) || (i ==2) || (i ==3) || (i ==4) || (i ==5) || (i ==12) || (i ==19) || (i ==24) || (i ==25) || (i ==39) || (i ==47) || (i ==52) || (i ==59) || (i ==76) || (i ==85) || (i ==88) || (i ==95))
+        {
+          HAL_Delay(400);
+        }
+      else if((i ==32) || ( i == 54))
+        {
+          HAL_Delay(600);
+        }
+    }
+
+    // HAL_IWDG_Refresh(&hiwdg);
   }
   /* USER CODE END 3 */
 }
@@ -133,11 +268,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
@@ -162,28 +296,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  if (huart->Instance == USART2)
-  {
-    usart2_buffer[usart2_index] = usart2_char;
-    if (usart2_buffer[usart2_index] == 0xCD)
-    {
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-      usart2_index = 0;
-      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
-      usart2_char = '\0';
-    }
-    usart2_index++;
-    if (usart2_index > 40)
-    {
-      usart2_index = 0;
-      memset(usart2_buffer, '\0', sizeof(usart2_buffer));
-      usart2_char = '\0';
-    }
-  }
-  HAL_UART_Receive_IT(&huart2, &usart2_char, 1);
-}
 
 /* USER CODE END 4 */
 

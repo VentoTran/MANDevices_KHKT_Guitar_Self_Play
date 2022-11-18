@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "iwdg.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -46,11 +45,200 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint16_t angle;
-servo_t servo1 = {
-  &htim1,
-  TIM_CHANNEL_1
+
+uint32_t Bai1[] = {
+  0b00011111000000010000001000000010,  
+  0b00100001000000100010010000000000,
+  0b00111110000000000000001100000010, ///////
+  0b00110001000000001000000100000010,
+  0b00101101000000010000001000000000,
+  0b00101001000000000000000000000000,
+  0b00101000000000000000000000000000,
+  0b00101001000000000000000000000000,
+  0b00101000000000000000000000000000,
+  0b00101010000000000000000000000010,
+  0b00000100000000100000000000000000,
+  0b00000110000000000000000000000000,
+  0b00000100000000000000000000000000,
+  0b00000000000000000010000000000000, ////
+  0b00000010000000000000000000000010,
+  0b00000000000000000000000000000000,
+  0b00000010000000000000000000000000,
+  0b00010100000000000000000010000000,
+  0b00010000000000000000000100000000,
+  0b00010010000000000000000000000010,
+  0b00010000000000000000000000000010,
+  0b00010010000000000000000000000010,
+  0b00010110000000000000000000000000,
+  0b00011010000000001000000100000000,
+  0b00011000000000000000000000000010,
+  0b00011100000000000000000010000000,
+  0b00011101000000000000000000000000,
+  0b00011100000000000000000000000000,
+  0b00011110000000000010000000000000,
+  0b00011100000000000000000000000010,
+  0b00001010000000010000000000000010,
+  0b00000010000000000000001000000000,
+  0b00000110000000000000000000000000,
+  0b00000111000000000000000000000000,
+  0b00000110000000000000000000000000,
+  0b00000111000000000000000000000000,
+  0b00000101000000000000000000000010,
+  0b00101011000000100000000000000000,
+  0b00101001000000000000000000000000,
+  0b00100001000000000000000000000000,
+  0b00100011000000000010000000000000,
+  0b00100001000000000010000000000000,
+  0b00100011000000000010000000000000,
+  0b00100001000000000010000000000000,
+  0b00110010000000000000000000000010,
+  0b00110011000000000001000000000000,
+  0b00110010000000000000000000000000,
+  0b00111010000000000000001000000000,
+  0b00111011000000000000000000000000,
+  0b00111010000000000000000000000000,
+  0b00111000000000000000000000000010,
+  0b00111100000000000000000000000000,
+  0b00110100000000001000000000000000,
+  0b00110000000000000000000100000000,
+  0b00110001000000000000000000000000,
+  0b00110011000000000010000000000000,
+  0b00110001000000000010000000000000,
+  0b00110011000000000000000000000010,
+  0b00101101000000010000001000000010,
+  0b00111101000000010000000000000000,///
+  0b00110101000000000000001000000000,
+  0b00111101000000000000001000000000, //
+  0b00110101000000000000001000000000,
+  0b00111101000000000000001000000000,
+  0b00110101000000000000001000000000,
+  0b00111101000000000000000000000000,
+  0b00010101000000100000000000000000,
+  0b00110101000000100000000000000000,
+  0b00111101000000000000000000000000,
+  0b00101101000000010000000000000000,
+  0b00101001000000000000000000000000,
+  0b00101101000000000000000000000000,
+  0b00100101000000000000001000000000,
+  0b00110101000000010000000000000000,
+  0b00000101000000000000000000000000,
+  0b00010101000000000000000000000000,
+  0b00011101000000000000000000000000,
+  0b00010101000000000000001000000000,
+  0b00011101000000000000000000000000,
+  0b00010101000000000000000000000000,
+  0b00011101000000000000001000000000,
+  0b00010101000000000000000000000000,
+  0b00000101000000010000000000000000,
+  0b00101101000000000000001000100000,
+  0b00100101000000001000000000000000,
+  0b00101101000000000000001000000000,
+  0b00100101000000000000001000000000,
+  0b00110101000000000000010000000000,
+  0b00100101000000010000000000000000,
+  0b00110101000000010000000000000000,
+  0b00100101010000000000000000000000,
+  0b00111011000000010000001000000010,
+  0b00101011000000010000000000000000,
+  0b00100011000000000000001000000000,
+  0b00101011000000000000001000000000,
+  0b00100011000000000000001000000000,
+  0b00101011000000000000001000000000,
+  0b00100011000000000000001000000000,
+  0b00101011000000000000000000000000,
+  0b00000011000000100000000000000000,
+  0b00100011000000100000000000000000,
+  0b00101011000000000000000000000000,
+  0b00100011000000000000000000000000,
+  0b00100111000000000000000000000000,
+  0b00100011000000000000000000000000,
+  0b00100111000000000000000100000000,
+  0b00100011000000000000000000000000,
+  0b00100111000000000000000100000000,
+  0b00001111100000000000001000000000,
+  0b00001011000000000000000000000000,
+  0b00011011000000010000000000000000
 };
+/* Define for 6 servo gay */
+  servo_t servo_w_1 = {
+    &htim1,
+    TIM_CHANNEL_1
+  };
+  servo_t servo_w_2 = {
+    &htim1,
+    TIM_CHANNEL_2
+  };
+  servo_t servo_w_3 = {
+    &htim1,
+    TIM_CHANNEL_3
+  };
+  servo_t servo_w_4 = {
+    &htim1,
+    TIM_CHANNEL_4
+  };
+  servo_t servo_w_5 = {
+    &htim2,
+    TIM_CHANNEL_1
+  };
+  servo_t servo_w_6 = {
+    &htim2,
+    TIM_CHANNEL_2
+  };
+
+/*Define for 24 servo nhan */
+
+  ///// Khoang 1 
+    servo_t servo_k_1_1 = {
+    &htim2,
+    TIM_CHANNEL_4
+  };
+    servo_t servo_k_1_2 = {
+    &htim2,
+    TIM_CHANNEL_3
+  };
+    servo_t servo_k_1_3 = {
+    &htim3,
+    TIM_CHANNEL_4
+  };
+    servo_t servo_k_1_4 = {
+    &htim3,
+    TIM_CHANNEL_3
+  };
+    servo_t servo_k_1_5 = {
+    &htim3,
+    TIM_CHANNEL_2
+  };
+    servo_t servo_k_1_6 = {
+    &htim3,
+    TIM_CHANNEL_1
+  };
+
+  ///// Khoang 2
+    servo_t servo_k_2_1 = {
+    &htim5,
+    TIM_CHANNEL_2
+  };
+    servo_t servo_k_2_2 = {
+    &htim5,
+    TIM_CHANNEL_1
+  };
+    servo_t servo_k_2_3 = {
+    &htim4,
+    TIM_CHANNEL_4
+  };
+    servo_t servo_k_2_4 = {
+    &htim4,
+    TIM_CHANNEL_3
+  };
+    servo_t servo_k_2_5 = {
+    &htim4,
+    TIM_CHANNEL_2
+  };
+    servo_t servo_k_2_6 = {
+    &htim4,
+    TIM_CHANNEL_1
+  };
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,7 +280,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_IWDG_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM1_Init();
@@ -103,8 +290,38 @@ int main(void)
   MX_UART5_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  Servo_Init(&servo1, servo1.htim, servo1.channel);
+  Servo_Init(&servo_w_1, servo_w_1.htim, servo_w_1.channel);
+  Servo_Init(&servo_w_2, servo_w_2.htim, servo_w_2.channel);
+  Servo_Init(&servo_w_3, servo_w_3.htim, servo_w_3.channel);
+  Servo_Init(&servo_w_4, servo_w_4.htim, servo_w_4.channel);
+  Servo_Init(&servo_w_5, servo_w_5.htim, servo_w_5.channel);
+  Servo_Init(&servo_w_6, servo_w_6.htim, servo_w_6.channel);
 
+  Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
+  Set_servo_5p(&servo_k_1_1);
+  Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
+  Set_servo_5p(&servo_k_1_2);
+  Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
+  Set_servo_5p(&servo_k_1_3);
+  Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
+  Set_servo_5p(&servo_k_1_4);
+  Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
+  Set_servo_5p(&servo_k_1_5);
+  Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
+  Set_servo_5p(&servo_k_1_6);
+
+  Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
+  Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
+  Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
+  Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
+  Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
+  Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
+
+  for(uint8_t j = 0; j < sizeof(Bai1) / sizeof(int); j++)
+  {
+    uint32_t bitt = Bai1[j];
+    HAL_UART_Transmit(&huart3, (uint8_t*)&bitt, 4, 1000);
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,11 +331,104 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    Set_servo_5p(&servo1);
-    HAL_Delay(1600);
-    Set_servo_9p(&servo1);
-    HAL_Delay(1600);
-    HAL_IWDG_Refresh(&hiwdg);
+    for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
+    {
+      uint32_t bit = Bai1[i];
+
+      if((bit & 0x0000001)) Set_servo_5p(&servo_k_1_1);            // bit 1 trong not nhac
+      else Set_servo_9p(&servo_k_1_1);
+
+      if(((bit >> 1) & 0x00000001)) Set_servo_5p(&servo_k_1_2);
+      else Set_servo_9p(&servo_k_1_2);
+
+      if(((bit >> 2) & 0x00000001)) Set_servo_5p(&servo_k_1_3);
+      else Set_servo_9p(&servo_k_1_3);
+
+      if(((bit >> 3) & 0x00000001)) Set_servo_5p(&servo_k_1_4);
+      else Set_servo_9p(&servo_k_1_4);
+
+      if(((bit >> 4) & 0x00000001)) Set_servo_5p(&servo_k_1_5);
+      else Set_servo_9p(&servo_k_1_5);
+
+      if(((bit >> 5) & 0x00000001)) Set_servo_5p(&servo_k_1_6);
+      else Set_servo_9p(&servo_k_1_6);
+
+      if(((bit >> 6) & 0x00000001)) Set_servo_5p(&servo_k_2_1);
+      else Set_servo_9p(&servo_k_2_1);
+
+      if(((bit >> 7) & 0x00000001)) Set_servo_5p(&servo_k_2_2);
+      else Set_servo_9p(&servo_k_2_2);
+
+      if(((bit >> 8) & 0x00000001)) Set_servo_5p(&servo_k_2_3);
+      else Set_servo_9p(&servo_k_2_3);
+
+      if(((bit >> 9) & 0x00000001)) Set_servo_5p(&servo_k_2_4);
+      else Set_servo_9p(&servo_k_2_4);
+
+      if(((bit >> 10) & 0x00000001)) Set_servo_5p(&servo_k_2_5);
+      else Set_servo_9p(&servo_k_2_5);
+
+      if(((bit >> 11) & 0x00000001)) Set_servo_5p(&servo_k_2_6);
+      else Set_servo_9p(&servo_k_2_6);
+
+      HAL_Delay(250);
+
+      if(((bit >> 24) & 0x01)) {Set_servo_5p(&servo_w_1);}
+      else 
+        {
+          Set_servo_9p(&servo_w_1);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_1);
+        }
+      if(((bit >> 25) & 0x00000001)) {Set_servo_5p(&servo_w_2);}
+      else 
+        {
+          Set_servo_9p(&servo_w_2);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_2);
+        }
+      if(((bit >> 26) & 0x01)) {Set_servo_5p(&servo_w_3);}
+      else 
+        {
+          Set_servo_9p(&servo_w_3);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_3);
+        }
+      if(((bit >> 27) & 0x00000001)) {Set_servo_5p(&servo_w_4);}
+      else 
+        {
+          Set_servo_9p(&servo_w_4);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_4);
+        }
+      if(((bit >> 28) & 0x00000001)) {Set_servo_5p(&servo_w_5);}
+      else 
+        {
+          Set_servo_9p(&servo_w_5);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_5);
+        }
+      if(((bit >> 29) & 0x00000001)) {Set_servo_5p(&servo_w_6);}
+      else 
+        {
+          Set_servo_9p(&servo_w_6);
+          // HAL_Delay(100);
+          // Set_servo_5p(&servo_w_6);
+        }
+
+      if((i != 1) && (i != 2) && (i != 3) && (i != 4) && (i != 5) && (i != 12) && (i != 19) && (i != 24) && (i != 25) && (i != 32) && (i != 39) && (i != 47) && (i != 52) && (i != 54) && (i != 59) && (i != 76) && (i != 85) && (i != 88) && (i != 95))
+        {
+          HAL_Delay(250);
+        }
+      else if((i ==1) || (i ==2) || (i ==3) || (i ==4) || (i ==5) || (i ==12) || (i ==19) || (i ==24) || (i ==25) || (i ==39) || (i ==47) || (i ==52) || (i ==59) || (i ==76) || (i ==85) || (i ==88) || (i ==95))
+        {
+          HAL_Delay(750);
+        }
+      else if((i ==32) || ( i == 54))
+        {
+          HAL_Delay(1250);
+        }
+    }
   }
   /* USER CODE END 3 */
 }
@@ -135,11 +445,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
