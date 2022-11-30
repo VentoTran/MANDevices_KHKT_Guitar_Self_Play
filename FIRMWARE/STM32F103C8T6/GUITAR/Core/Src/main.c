@@ -48,83 +48,96 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-  ///// Khoang 3
-    servo_t servo_k_3_1 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_3_2 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_3_3 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_3_4 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_3_5 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_3_6 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
-
-////// Khoang 4
-    servo_t servo_k_4_1 = {
-    &htim1,
-    TIM_CHANNEL_4
-  };
-    servo_t servo_k_4_2 = {
-    &htim1,
-    TIM_CHANNEL_3
-  };
-    servo_t servo_k_4_3 = {
-    &htim1,
-    TIM_CHANNEL_2
-  };
-    servo_t servo_k_4_4 = {
-    &htim1,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_4_5 = {
-    &htim2,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_4_6 = {
-    &htim2,
-    TIM_CHANNEL_2
-  };
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 int buf_index = 0;
 int ibuf_index = 0;
 uint8_t data;
 uint8_t buffer[4];
 uint32_t ibuffer[500] = {0};
+uint32_t totalStep = 0;
+bool isBufReady = false;
+bool isNode = false;
+
+// Khoang 3
+servo_t servo_k_3_1 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_3_2 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_3_3 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_3_4 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_3_5 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_3_6 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+
+// Khoang 4
+servo_t servo_k_4_1 = {
+  &htim1,
+  TIM_CHANNEL_4
+};
+servo_t servo_k_4_2 = {
+  &htim1,
+  TIM_CHANNEL_3
+};
+servo_t servo_k_4_3 = {
+  &htim1,
+  TIM_CHANNEL_2
+};
+servo_t servo_k_4_4 = {
+  &htim1,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_4_5 = {
+  &htim2,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_4_6 = {
+  &htim2,
+  TIM_CHANNEL_2
+};
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-  if(huart == &huart2)
+  if (huart == &huart2)
   {
-    if(buf_index == 0 && data == 254)
+    if (buf_index == 0 && data == 254)
     {
-
+      //do nothing for 1 byte
     }
     else
     {
       buffer[buf_index++] = data;
-      if(buf_index == 4)
+      if (buf_index == 4)
       {
         ibuffer[ibuf_index++] = (uint32_t)(buffer[3] << 24) | (uint32_t)(buffer[2] << 16) | (uint32_t)(buffer[1] << 8) | (uint32_t)buffer[0];
         buf_index = 0;
+      }
+      if (isBufReady == true)
+      {
+        if (data == 0xAB)
+        {
+          isNode = true;
+        }
+        data = '\0';
       }
     }
     HAL_UART_Receive_IT(&huart2, &data, 1);
@@ -171,22 +184,43 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_IT(&huart2, &data, 1);
+
   Servo_Init(&servo_k_3_1, servo_k_3_1.htim, servo_k_3_1.channel);
+  Set_servo_5p(&servo_k_3_1);
   Servo_Init(&servo_k_3_2, servo_k_3_2.htim, servo_k_3_2.channel);
+  Set_servo_5p(&servo_k_3_2);
   Servo_Init(&servo_k_3_3, servo_k_3_3.htim, servo_k_3_3.channel);
+  Set_servo_5p(&servo_k_3_3);
   Servo_Init(&servo_k_3_4, servo_k_3_4.htim, servo_k_3_4.channel);
+  Set_servo_5p(&servo_k_3_4);
   Servo_Init(&servo_k_3_5, servo_k_3_5.htim, servo_k_3_5.channel);
+  Set_servo_5p(&servo_k_3_5);
   Servo_Init(&servo_k_3_6, servo_k_3_6.htim, servo_k_3_6.channel);
+  Set_servo_5p(&servo_k_3_6);
 
   Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
+  Set_servo_5p(&servo_k_4_1);
   Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  Set_servo_5p(&servo_k_4_2);
   Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
+  Set_servo_5p(&servo_k_4_3);
   Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
+  Set_servo_5p(&servo_k_4_4);
   Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
+  Set_servo_5p(&servo_k_4_5);
   Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
+  Set_servo_5p(&servo_k_4_6);
 
-  HAL_UART_Receive_IT(&huart2, &data, 1);
+  // HAL_UART_Receive_IT(&huart2, &data, 1);
   HAL_Delay(10000);
+
+  uint32_t count = 0;
+  isBufReady = true;
+  HAL_UART_Transmit(&huart2, 0xBA, 1, 100);
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -196,10 +230,17 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+<<<<<<< HEAD
     // uint32_t Bai1 = *ibuffer;
     for(uint8_t i = 0; i < sizeof(ibuffer) / sizeof(int); i++)
     {
       uint32_t bit = ibuffer[i];
+=======
+    if (isNode == true)
+    {
+      isNode = false;
+      uint32_t bit = ibuffer[count++];
+>>>>>>> refs/remotes/origin/main
 
       if(((bit >> 12) & 0x00000001)) Set_servo_5p(&servo_k_3_1);
       else Set_servo_9p(&servo_k_3_1);
@@ -237,21 +278,30 @@ int main(void)
       if(((bit >> 23) & 0x00000001)) Set_servo_5p(&servo_k_4_6);
       else Set_servo_9p(&servo_k_4_6);
 
-      if((i != 1) && (i != 2) && (i != 3) && (i != 4) && (i != 5) && (i != 12) && (i != 19) && (i != 24) && (i != 25) && (i != 32) && (i != 39) && (i != 47) && (i != 52) && (i != 54) && (i != 59) && (i != 76) && (i != 85) && (i != 88) && (i != 95))
-        {
-          HAL_Delay(200);
-        }
-      else if((i ==1) || (i ==2) || (i ==3) || (i ==4) || (i ==5) || (i ==12) || (i ==19) || (i ==24) || (i ==25) || (i ==39) || (i ==47) || (i ==52) || (i ==59) || (i ==76) || (i ==85) || (i ==88) || (i ==95))
-        {
-          HAL_Delay(400);
-        }
-      else if((i ==32) || ( i == 54))
-        {
-          HAL_Delay(600);
-        }
+      HAL_Delay(250);
+
+      if( (count != 1) && (count != 2) && (count != 3) && (count != 4) &&     \
+          (count != 5) && (count != 12) && (count != 19) && (count != 24) &&  \
+          (count != 25) && (count != 32) && (count != 39) && (count != 47) && \
+          (count != 52) && (count != 54) && (count != 59) && (count != 76) && \
+          (count != 85) && (count != 88) && (count != 95))
+      {
+        HAL_Delay(250);
+      }
+      else if((count == 1) || (count == 2) || (count == 3) || (count == 4) ||     \
+              (count == 5) || (count == 12) || (count == 19) || (count == 24) ||  \
+              (count == 25) || (count == 39) || (count == 47) || (count == 52) || \
+              (count == 59) || (count == 76) || (count == 85) || (count == 88) || \
+              (count == 95))
+      {
+        HAL_Delay(750);
+      }
+      else if((count == 32) || ( count == 54))
+      {
+        HAL_Delay(1250);
+      }
     }
 
-    // HAL_IWDG_Refresh(&hiwdg);
   }
   /* USER CODE END 3 */
 }

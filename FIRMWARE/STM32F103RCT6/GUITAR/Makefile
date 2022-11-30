@@ -42,6 +42,9 @@ Core/Src/spi.c \
 Core/Src/tim.c \
 Core/Src/usart.c \
 Core/Src/servo.c \
+Core/Src/lcd.c \
+Core/Src/font.c \
+Core/Src/touch.c \
 Core/Src/stm32f1xx_it.c \
 Core/Src/stm32f1xx_hal_msp.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
@@ -190,7 +193,7 @@ clean:
 
 
 flash: all
-	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit
+	openocd -f interface/stlink.cfg -f target/stm32f1x_real.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit
 
 
 #######################################

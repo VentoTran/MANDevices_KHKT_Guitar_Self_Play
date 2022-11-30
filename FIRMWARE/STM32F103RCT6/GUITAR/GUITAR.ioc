@@ -4,6 +4,23 @@ GPIO.groupedBy=Group By Peripherals
 KeepUserPlacement=false
 Mcu.CPN=STM32F103RCT6
 Mcu.Family=STM32F1
+<<<<<<< HEAD
+Mcu.IP0=IWDG
+Mcu.IP1=NVIC
+Mcu.IP10=TIM5
+Mcu.IP11=TIM7
+Mcu.IP12=UART5
+Mcu.IP13=USART3
+Mcu.IP2=RCC
+Mcu.IP3=SPI1
+Mcu.IP4=SPI2
+Mcu.IP5=SYS
+Mcu.IP6=TIM1
+Mcu.IP7=TIM2
+Mcu.IP8=TIM3
+Mcu.IP9=TIM4
+Mcu.IPNb=14
+=======
 Mcu.IP0=NVIC
 Mcu.IP1=RCC
 Mcu.IP10=UART5
@@ -17,6 +34,7 @@ Mcu.IP7=TIM3
 Mcu.IP8=TIM4
 Mcu.IP9=TIM5
 Mcu.IPNb=12
+>>>>>>> 6b6ccf8e98083775ad89f34fdcdd3ab6f3819bdc
 Mcu.Name=STM32F103R(C-D-E)Tx
 Mcu.Package=LQFP64
 Mcu.Pin0=PC13-TAMPER-RTC
@@ -55,18 +73,33 @@ Mcu.Pin38=PB7
 Mcu.Pin39=PB8
 Mcu.Pin4=PA1
 Mcu.Pin40=PB9
+<<<<<<< HEAD
+Mcu.Pin41=VP_IWDG_VS_IWDG
+Mcu.Pin42=VP_SYS_VS_tim6
+Mcu.Pin43=VP_TIM1_VS_ClockSourceINT
+Mcu.Pin44=VP_TIM2_VS_ClockSourceINT
+Mcu.Pin45=VP_TIM3_VS_ClockSourceINT
+Mcu.Pin46=VP_TIM4_VS_ClockSourceINT
+Mcu.Pin47=VP_TIM5_VS_ClockSourceINT
+Mcu.Pin48=VP_TIM7_VS_ClockSourceINT
+=======
 Mcu.Pin41=VP_SYS_VS_tim6
 Mcu.Pin42=VP_TIM1_VS_ClockSourceINT
 Mcu.Pin43=VP_TIM2_VS_ClockSourceINT
 Mcu.Pin44=VP_TIM3_VS_ClockSourceINT
 Mcu.Pin45=VP_TIM4_VS_ClockSourceINT
 Mcu.Pin46=VP_TIM5_VS_ClockSourceINT
+>>>>>>> 6b6ccf8e98083775ad89f34fdcdd3ab6f3819bdc
 Mcu.Pin5=PA2
 Mcu.Pin6=PA3
 Mcu.Pin7=PA4
 Mcu.Pin8=PA5
 Mcu.Pin9=PA6
+<<<<<<< HEAD
+Mcu.PinsNb=49
+=======
 Mcu.PinsNb=47
+>>>>>>> 6b6ccf8e98083775ad89f34fdcdd3ab6f3819bdc
 Mcu.ThirdPartyNb=0
 Mcu.UserConstants=
 Mcu.UserName=STM32F103RCTx
@@ -313,9 +346,16 @@ TIM5.Channel-PWM\ Generation1\ CH1=TIM_CHANNEL_1
 TIM5.Channel-PWM\ Generation2\ CH2=TIM_CHANNEL_2
 TIM5.Channel-PWM\ Generation3\ CH3=TIM_CHANNEL_3
 TIM5.Channel-PWM\ Generation4\ CH4=TIM_CHANNEL_4
+<<<<<<< HEAD
+TIM5.IPParameters=Channel-PWM Generation1 CH1,Channel-PWM Generation2 CH2,Channel-PWM Generation3 CH3,Channel-PWM Generation4 CH4
+TIM7.IPParameters=Prescaler,Period
+TIM7.Period=287
+TIM7.Prescaler=49999
+=======
 TIM5.IPParameters=Channel-PWM Generation1 CH1,Channel-PWM Generation2 CH2,Channel-PWM Generation3 CH3,Channel-PWM Generation4 CH4,Prescaler,Period
 TIM5.Period=143
 TIM5.Prescaler=9999
+>>>>>>> 6b6ccf8e98083775ad89f34fdcdd3ab6f3819bdc
 UART5.IPParameters=VirtualMode
 UART5.VirtualMode=Asynchronous
 USART3.IPParameters=VirtualMode
@@ -332,4 +372,6 @@ VP_TIM4_VS_ClockSourceINT.Mode=Internal
 VP_TIM4_VS_ClockSourceINT.Signal=TIM4_VS_ClockSourceINT
 VP_TIM5_VS_ClockSourceINT.Mode=Internal
 VP_TIM5_VS_ClockSourceINT.Signal=TIM5_VS_ClockSourceINT
+VP_TIM7_VS_ClockSourceINT.Mode=Enable_Timer
+VP_TIM7_VS_ClockSourceINT.Signal=TIM7_VS_ClockSourceINT
 board=custom
