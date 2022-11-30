@@ -196,10 +196,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    uint32_t Bai1 = ibuffer;
-    for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
+    // uint32_t Bai1 = *ibuffer;
+    for(uint8_t i = 0; i < sizeof(ibuffer) / sizeof(int); i++)
     {
-      uint32_t bit = Bai1[i];
+      uint32_t bit = ibuffer[i];
 
       if(((bit >> 12) & 0x00000001)) Set_servo_5p(&servo_k_3_1);
       else Set_servo_9p(&servo_k_3_1);
