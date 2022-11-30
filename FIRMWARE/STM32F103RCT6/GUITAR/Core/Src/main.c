@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "servo.h"
+#include "lcd.h"
+#include "touch.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,6 +47,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
+
 
 uint32_t Bai1[] = {
   0b00011111000000010000001000000010,  
@@ -159,91 +163,112 @@ uint32_t Bai1[] = {
   0b00001011000000000000000000000000,
   0b00011011000000010000000000000000
 };
+
 /* Define for 6 servo gay */
-  servo_t servo_w_1 = {
+servo_t servo_w_1 = {
     &htim1,
     TIM_CHANNEL_1
   };
-  servo_t servo_w_2 = {
+servo_t servo_w_2 = {
     &htim1,
     TIM_CHANNEL_2
   };
-  servo_t servo_w_3 = {
+servo_t servo_w_3 = {
     &htim1,
     TIM_CHANNEL_3
   };
-  servo_t servo_w_4 = {
+servo_t servo_w_4 = {
     &htim1,
     TIM_CHANNEL_4
   };
-  servo_t servo_w_5 = {
+servo_t servo_w_5 = {
     &htim2,
     TIM_CHANNEL_1
   };
-  servo_t servo_w_6 = {
+servo_t servo_w_6 = {
     &htim2,
     TIM_CHANNEL_2
   };
 
 /*Define for 24 servo nhan */
 
-  ///// Khoang 1 
-    servo_t servo_k_1_1 = {
-    &htim2,
-    TIM_CHANNEL_4
-  };
-    servo_t servo_k_1_2 = {
-    &htim2,
-    TIM_CHANNEL_3
-  };
-    servo_t servo_k_1_3 = {
-    &htim3,
-    TIM_CHANNEL_4
-  };
-    servo_t servo_k_1_4 = {
-    &htim3,
-    TIM_CHANNEL_3
-  };
-    servo_t servo_k_1_5 = {
-    &htim3,
-    TIM_CHANNEL_2
-  };
-    servo_t servo_k_1_6 = {
-    &htim3,
-    TIM_CHANNEL_1
-  };
+// Khoang 1 
+servo_t servo_k_1_1 = {
+  &htim2,
+  TIM_CHANNEL_4
+};
+servo_t servo_k_1_2 = {
+  &htim2,
+  TIM_CHANNEL_3
+};
+servo_t servo_k_1_3 = {
+  &htim3,
+  TIM_CHANNEL_4
+};
+servo_t servo_k_1_4 = {
+  &htim3,
+  TIM_CHANNEL_3
+};
+servo_t servo_k_1_5 = {
+  &htim3,
+  TIM_CHANNEL_2
+};
+servo_t servo_k_1_6 = {
+  &htim3,
+  TIM_CHANNEL_1
+};
 
-  ///// Khoang 2
-    servo_t servo_k_2_1 = {
-    &htim5,
-    TIM_CHANNEL_2
-  };
-    servo_t servo_k_2_2 = {
-    &htim5,
-    TIM_CHANNEL_1
-  };
-    servo_t servo_k_2_3 = {
-    &htim4,
-    TIM_CHANNEL_4
-  };
-    servo_t servo_k_2_4 = {
-    &htim4,
-    TIM_CHANNEL_3
-  };
-    servo_t servo_k_2_5 = {
-    &htim4,
-    TIM_CHANNEL_2
-  };
-    servo_t servo_k_2_6 = {
-    &htim4,
-    TIM_CHANNEL_1
-  };
+// Khoang 2
+servo_t servo_k_2_1 = {
+  &htim5,
+  TIM_CHANNEL_2
+};
+servo_t servo_k_2_2 = {
+  &htim5,
+  TIM_CHANNEL_1
+};
+servo_t servo_k_2_3 = {
+  &htim4,
+  TIM_CHANNEL_4
+};
+servo_t servo_k_2_4 = {
+  &htim4,
+  TIM_CHANNEL_3
+};
+servo_t servo_k_2_5 = {
+  &htim4,
+  TIM_CHANNEL_2
+};
+servo_t servo_k_2_6 = {
+  &htim4,
+  TIM_CHANNEL_1
+};
+
+volatile bool isReady = false;
+uint8_t buf = '\0';
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart == &huart3)
+  {
+    isReady = true;
+  }
+  HAL_UART_Receive_IT(&huart3, &buf, 1);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if (GPIO_Pin == TCH_IRQ_Pin)
+  {
+
+  }
+}
 
 /* USER CODE END PFP */
 
@@ -290,6 +315,17 @@ int main(void)
   MX_UART5_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_IT(&huart3, &buf, 1);
+
+  ILI9341_Unselect();
+  ILI9341_TouchUnselect();
+  ILI9341_Init();
+  ILI9341_FillScreen(ILI9341_BLACK);
+
+  HAL_Delay(500);
+
+  ILI9341_FillScreen(ILI9341_WHITE);
+
   Servo_Init(&servo_w_1, servo_w_1.htim, servo_w_1.channel);
   Servo_Init(&servo_w_2, servo_w_2.htim, servo_w_2.channel);
   Servo_Init(&servo_w_3, servo_w_3.htim, servo_w_3.channel);
@@ -311,17 +347,25 @@ int main(void)
   Set_servo_5p(&servo_k_1_6);
 
   Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
+  Set_servo_5p(&servo_k_2_1);
   Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
+  Set_servo_5p(&servo_k_2_2);
   Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
+  Set_servo_5p(&servo_k_2_3);
   Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
+  Set_servo_5p(&servo_k_2_4);
   Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
+  Set_servo_5p(&servo_k_2_5);
   Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
+  Set_servo_5p(&servo_k_2_6);
 
   for(uint8_t j = 0; j < sizeof(Bai1) / sizeof(int); j++)
   {
     uint32_t bitt = Bai1[j];
     HAL_UART_Transmit(&huart3, (uint8_t*)&bitt, 4, 1000);
   }
+
+  while (isReady == false);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -334,6 +378,7 @@ int main(void)
     for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
     {
       uint32_t bit = Bai1[i];
+      HAL_UART_Transmit(&huart3, 0xAB, 1, 100);
 
       if((bit & 0x0000001)) Set_servo_5p(&servo_k_1_1);            // bit 1 trong not nhac
       else Set_servo_9p(&servo_k_1_1);
@@ -374,60 +419,43 @@ int main(void)
       HAL_Delay(250);
 
       if(((bit >> 24) & 0x01)) {Set_servo_5p(&servo_w_1);}
-      else 
-        {
-          Set_servo_9p(&servo_w_1);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_1);
-        }
-      if(((bit >> 25) & 0x00000001)) {Set_servo_5p(&servo_w_2);}
-      else 
-        {
-          Set_servo_9p(&servo_w_2);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_2);
-        }
-      if(((bit >> 26) & 0x01)) {Set_servo_5p(&servo_w_3);}
-      else 
-        {
-          Set_servo_9p(&servo_w_3);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_3);
-        }
-      if(((bit >> 27) & 0x00000001)) {Set_servo_5p(&servo_w_4);}
-      else 
-        {
-          Set_servo_9p(&servo_w_4);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_4);
-        }
-      if(((bit >> 28) & 0x00000001)) {Set_servo_5p(&servo_w_5);}
-      else 
-        {
-          Set_servo_9p(&servo_w_5);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_5);
-        }
-      if(((bit >> 29) & 0x00000001)) {Set_servo_5p(&servo_w_6);}
-      else 
-        {
-          Set_servo_9p(&servo_w_6);
-          // HAL_Delay(100);
-          // Set_servo_5p(&servo_w_6);
-        }
+      else Set_servo_9p(&servo_w_1);
 
-      if((i != 1) && (i != 2) && (i != 3) && (i != 4) && (i != 5) && (i != 12) && (i != 19) && (i != 24) && (i != 25) && (i != 32) && (i != 39) && (i != 47) && (i != 52) && (i != 54) && (i != 59) && (i != 76) && (i != 85) && (i != 88) && (i != 95))
-        {
-          HAL_Delay(250);
-        }
-      else if((i ==1) || (i ==2) || (i ==3) || (i ==4) || (i ==5) || (i ==12) || (i ==19) || (i ==24) || (i ==25) || (i ==39) || (i ==47) || (i ==52) || (i ==59) || (i ==76) || (i ==85) || (i ==88) || (i ==95))
-        {
-          HAL_Delay(750);
-        }
-      else if((i ==32) || ( i == 54))
-        {
-          HAL_Delay(1250);
-        }
+      if(((bit >> 25) & 0x00000001)) {Set_servo_5p(&servo_w_2);}
+      else Set_servo_9p(&servo_w_2);
+
+      if(((bit >> 26) & 0x01)) {Set_servo_5p(&servo_w_3);}
+      else Set_servo_9p(&servo_w_3);
+
+      if(((bit >> 27) & 0x00000001)) {Set_servo_5p(&servo_w_4);}
+      else Set_servo_9p(&servo_w_4);
+
+      if(((bit >> 28) & 0x00000001)) {Set_servo_5p(&servo_w_5);}
+      else Set_servo_9p(&servo_w_5);
+
+      if(((bit >> 29) & 0x00000001)) {Set_servo_5p(&servo_w_6);}
+      else Set_servo_9p(&servo_w_6);
+
+
+      if( (i != 1) && (i != 2) && (i != 3) && (i != 4) &&     \
+          (i != 5) && (i != 12) && (i != 19) && (i != 24) &&  \
+          (i != 25) && (i != 32) && (i != 39) && (i != 47) && \
+          (i != 52) && (i != 54) && (i != 59) && (i != 76) && \
+          (i != 85) && (i != 88) && (i != 95))
+      {
+        HAL_Delay(250);
+      }
+      else if((i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) ||       \
+              (i == 12) || (i == 19) || (i == 24) || (i == 25) || (i == 39) ||  \
+              (i == 47) || (i == 52) || (i == 59) || (i == 76) || (i == 85) ||  \
+              (i == 88) || (i == 95))
+      {
+        HAL_Delay(750);
+      }
+      else if((i == 32) || ( i == 54))
+      {
+        HAL_Delay(1250);
+      }
     }
   }
   /* USER CODE END 3 */
@@ -489,7 +517,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 0 */
 
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM6) {
+  if (htim->Instance == TIM6)
+  {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
