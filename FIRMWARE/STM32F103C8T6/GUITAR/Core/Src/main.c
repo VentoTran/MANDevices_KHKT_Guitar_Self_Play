@@ -230,10 +230,17 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+<<<<<<< HEAD
+    // uint32_t Bai1 = *ibuffer;
+    for(uint8_t i = 0; i < sizeof(ibuffer) / sizeof(int); i++)
+    {
+      uint32_t bit = ibuffer[i];
+=======
     if (isNode == true)
     {
       isNode = false;
       uint32_t bit = ibuffer[count++];
+>>>>>>> refs/remotes/origin/main
 
       if(((bit >> 12) & 0x00000001)) Set_servo_5p(&servo_k_3_1);
       else Set_servo_9p(&servo_k_3_1);
