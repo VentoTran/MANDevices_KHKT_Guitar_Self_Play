@@ -318,14 +318,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_IT(&huart3, &buf, 1);
 
-  ILI9341_Unselect();
-  ILI9341_TouchUnselect();
-  ILI9341_Init();
-  ILI9341_FillScreen(ILI9341_BLACK);
 
-  HAL_Delay(500);
-
-  ILI9341_FillScreen(ILI9341_WHITE);
 
   Servo_Init(&servo_w_1, servo_w_1.htim, servo_w_1.channel);
   Set_servo_xp(&servo_w_1, W1_S1);
@@ -354,17 +347,17 @@ int main(void)
 
 
   Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
-
+  Set_servo_xp(&servo_k_2_1, K3_W1_RELEASE);
   Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
-
+  Set_servo_xp(&servo_k_2_2, K3_W2_RELEASE);
   Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
-
+  Set_servo_xp(&servo_k_2_3, K3_W3_RELEASE);
   Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
-
+  Set_servo_xp(&servo_k_2_4, K3_W4_RELEASE);
   Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
-
+  Set_servo_xp(&servo_k_2_5, K3_W5_RELEASE);
   Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
-
+  Set_servo_xp(&servo_k_2_6, K3_W6_RELEASE);
 
   // for(uint8_t j = 0; j < sizeof(Bai1) / sizeof(int); j++)
   // {
@@ -373,7 +366,24 @@ int main(void)
   // }
 
   // while (isReady == false);
-  Set_servo_xp(&servo_k_1_1, 70);
+  Set_servo_xp(&servo_w_1, W1_S1);
+  Set_servo_xp(&servo_w_2, W2_S1);
+  Set_servo_xp(&servo_w_3, W3_S1);
+  Set_servo_xp(&servo_w_4, W4_S1);
+  Set_servo_xp(&servo_w_5, W5_S1);
+  Set_servo_xp(&servo_w_6, W6_S1);
+
+  ILI9341_Unselect();
+  ILI9341_TouchUnselect();
+  ILI9341_Init();
+  ILI9341_FillScreen(ILI9341_BLACK);
+
+  HAL_Delay(500);
+
+  ILI9341_FillScreen(ILI9341_WHITE);
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -389,35 +399,77 @@ int main(void)
     // Set_servo_xp(&servo_w_3, W3_S2);
     // HAL_Delay(2000);
 
+    // for (int i = 0; i < 200; i++)
+    // {
+    //   Set_servo_xp(&servo_w_1, i);
+    //   HAL_Delay(300);
+    // }
+
     // Set_servo_xp(&servo_k_1_1, 70);
     // HAL_Delay(300);
     // Set_servo_xp(&servo_w_3, W3_S1);
     // HAL_Delay(2000);
 
-    Set_servo_xp(&servo_w_1, W1_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_2, W2_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_3, W3_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_4, W4_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_5, W5_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_6, W6_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_1, W1_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_2, W2_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_3, W3_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_4, W4_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_5, W5_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_6, W6_S2);
-    HAL_Delay(500);
+    //------------------------------------------------------
+
+    // Set_servo_xp(&servo_k_2_2, K3_W2_RELEASE);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_2, W2_S2);
+    // HAL_Delay(2000);
+    // Set_servo_xp(&servo_k_2_2, K3_W2_PRESS);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_2, W2_S1);
+    // HAL_Delay(2000);
+    // Set_servo_xp(&servo_k_2_2, K3_W2_RELEASE);
+
+    // Set_servo_xp(&servo_k_2_3, K3_W3_RELEASE);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S2);
+    // HAL_Delay(2000);
+    // Set_servo_xp(&servo_k_2_3, K3_W3_PRESS);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S1);
+    // HAL_Delay(2000);
+    // Set_servo_xp(&servo_k_2_3, K3_W3_RELEASE);
+
+    //------------------------------------------------------
+
+    // Set_servo_xp(&servo_w_2, W2_S1);
+    // Set_servo_xp(&servo_w_3, W3_S1);
+    // Set_servo_xp(&servo_w_4, W4_S1);
+    // Set_servo_xp(&servo_w_5, W5_S1);
+    // Set_servo_xp(&servo_w_6, W6_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_1, W1_S2);
+    // Set_servo_xp(&servo_w_2, W2_S2);
+    // Set_servo_xp(&servo_w_3, W3_S2);
+    // Set_servo_xp(&servo_w_4, W4_S2);
+    // Set_servo_xp(&servo_w_5, W5_S2);
+    // Set_servo_xp(&servo_w_6, W6_S2);
+    // HAL_Delay(500);
+
+    // Set_servo_xp(&servo_w_2, W2_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_4, W4_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_5, W5_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_6, W6_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_1, W1_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_2, W2_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_4, W4_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_5, W5_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_6, W6_S2);
+    // HAL_Delay(500);
 
   }
   /* USER CODE END 3 */
