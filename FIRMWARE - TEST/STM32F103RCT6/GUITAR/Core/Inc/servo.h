@@ -6,11 +6,11 @@
 #define SERVO_MARK_0    30
 #define SERVO_MARK_1    50
 
-#define W1_S1   (SERVO_MARK_0)
-#define W1_S2   (SERVO_MARK_1-3)
+#define W1_S1   (SERVO_MARK_0+10)
+#define W1_S2   (SERVO_MARK_1+7)
 #define W2_S1   (SERVO_MARK_0+2)
 #define W2_S2   (SERVO_MARK_1-3)
-#define W3_S1   (SERVO_MARK_0)
+#define W3_S1   (SERVO_MARK_0+2)
 #define W3_S2   (SERVO_MARK_1)
 #define W4_S1   (SERVO_MARK_0-2)
 #define W4_S2   (SERVO_MARK_1-2)
