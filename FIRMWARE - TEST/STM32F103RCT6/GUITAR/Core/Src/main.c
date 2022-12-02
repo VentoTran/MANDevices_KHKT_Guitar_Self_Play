@@ -448,31 +448,31 @@ int main(void)
     // Set_servo_xp(&servo_w_6, W6_S2);
     // HAL_Delay(500);
 
-    Set_servo_xp(&servo_w_1, W1_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_2, W2_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_3, W3_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_4, W4_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_5, W5_S1);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_6, W6_S1);
-    HAL_Delay(500);
+    // Set_servo_xp(&servo_w_1, W1_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_2, W2_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_4, W4_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_5, W5_S1);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_6, W6_S1);
+    // HAL_Delay(500);
     
-    Set_servo_xp(&servo_w_1, W1_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_2, W2_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_3, W3_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_4, W4_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_5, W5_S2);
-    HAL_Delay(500);
-    Set_servo_xp(&servo_w_6, W6_S2);
-    HAL_Delay(500);
+    // Set_servo_xp(&servo_w_1, W1_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_2, W2_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_3, W3_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_4, W4_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_5, W5_S2);
+    // HAL_Delay(500);
+    // Set_servo_xp(&servo_w_6, W6_S2);
+    // HAL_Delay(500);
 
   }
   /* USER CODE END 3 */

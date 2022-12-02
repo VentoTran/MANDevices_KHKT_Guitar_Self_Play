@@ -59,28 +59,28 @@ bool isNode = false;
 
 // Khoang 3
 servo_t servo_k_3_1 = {
-  &htim4,
-  TIM_CHANNEL_1
+  &htim3,
+  TIM_CHANNEL_3
 };
 servo_t servo_k_3_2 = {
-  &htim4,
-  TIM_CHANNEL_1
+  &htim3,
+  TIM_CHANNEL_4
 };
 servo_t servo_k_3_3 = {
-  &htim4,
-  TIM_CHANNEL_1
+  &htim2,
+  TIM_CHANNEL_3
 };
 servo_t servo_k_3_4 = {
-  &htim4,
-  TIM_CHANNEL_1
+  &htim2,
+  TIM_CHANNEL_4
 };
 servo_t servo_k_3_5 = {
-  &htim4,
+  &htim3,
   TIM_CHANNEL_1
 };
 servo_t servo_k_3_6 = {
-  &htim4,
-  TIM_CHANNEL_1
+  &htim3,
+  TIM_CHANNEL_2
 };
 
 // Khoang 4
@@ -187,40 +187,40 @@ int main(void)
   HAL_UART_Receive_IT(&huart2, &data, 1);
 
   Servo_Init(&servo_k_3_1, servo_k_3_1.htim, servo_k_3_1.channel);
-  Set_servo_5p(&servo_k_3_1);
+  Set_servo_xp(&servo_k_3_1, K3_W1_RELEASE);
   Servo_Init(&servo_k_3_2, servo_k_3_2.htim, servo_k_3_2.channel);
-  Set_servo_5p(&servo_k_3_2);
+  Set_servo_xp(&servo_k_3_2, K3_W2_RELEASE);
   Servo_Init(&servo_k_3_3, servo_k_3_3.htim, servo_k_3_3.channel);
-  Set_servo_5p(&servo_k_3_3);
+  Set_servo_xp(&servo_k_3_3, K3_W3_RELEASE);
   Servo_Init(&servo_k_3_4, servo_k_3_4.htim, servo_k_3_4.channel);
-  Set_servo_5p(&servo_k_3_4);
+  Set_servo_xp(&servo_k_3_4, K3_W4_RELEASE);
   Servo_Init(&servo_k_3_5, servo_k_3_5.htim, servo_k_3_5.channel);
-  Set_servo_5p(&servo_k_3_5);
+  Set_servo_xp(&servo_k_3_5, K3_W5_RELEASE);
   Servo_Init(&servo_k_3_6, servo_k_3_6.htim, servo_k_3_6.channel);
-  Set_servo_5p(&servo_k_3_6);
+  Set_servo_xp(&servo_k_3_6, K3_W6_RELEASE);
 
-  Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
-  Set_servo_5p(&servo_k_4_1);
-  Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
-  Set_servo_5p(&servo_k_4_2);
-  Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
-  Set_servo_5p(&servo_k_4_3);
-  Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
-  Set_servo_5p(&servo_k_4_4);
-  Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
-  Set_servo_5p(&servo_k_4_5);
-  Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
-  Set_servo_5p(&servo_k_4_6);
+  // Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
+  // Set_servo_5p(&servo_k_4_1);
+  // Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  // Set_servo_5p(&servo_k_4_2);
+  // Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
+  // Set_servo_5p(&servo_k_4_3);
+  // Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
+  // Set_servo_5p(&servo_k_4_4);
+  // Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
+  // Set_servo_5p(&servo_k_4_5);
+  // Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
+  // Set_servo_5p(&servo_k_4_6);
 
   // HAL_UART_Receive_IT(&huart2, &data, 1);
-  HAL_Delay(10000);
+  // HAL_Delay(10000);
 
-  uint32_t count = 0;
-  isBufReady = true;
-  HAL_UART_Transmit(&huart2, 0xBA, 1, 100);
+  // uint32_t count = 0;
+  // isBufReady = true;
+  // HAL_UART_Transmit(&huart2, 0xBA, 1, 100);
 
 
-
+  uint32_t timeLoop = 2000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -230,70 +230,48 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    if (isNode == true)
-    {
-      isNode = false;
-      uint32_t bit = ibuffer[count++];
+    Set_servo_xp(&servo_k_3_1, K3_W1_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_1, K3_W1_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_1, K3_W1_RELEASE);
+    HAL_Delay(500);
 
-      if(((bit >> 12) & 0x00000001)) Set_servo_5p(&servo_k_3_1);
-      else Set_servo_9p(&servo_k_3_1);
+    Set_servo_xp(&servo_k_3_2, K3_W2_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_2, K3_W2_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_2, K3_W2_RELEASE);
+    HAL_Delay(500);
 
-      if(((bit >> 13) & 0x00000001)) Set_servo_5p(&servo_k_3_2);
-      else Set_servo_9p(&servo_k_3_2);
+    Set_servo_xp(&servo_k_3_3, K3_W3_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_3, K3_W3_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_3, K3_W3_RELEASE);
+    HAL_Delay(500);
 
-      if(((bit >> 14) & 0x00000001)) Set_servo_5p(&servo_k_3_3);
-      else Set_servo_9p(&servo_k_3_3);
+    Set_servo_xp(&servo_k_3_4, K3_W4_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_4, K3_W4_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_4, K3_W4_RELEASE);
+    HAL_Delay(500);
 
-      if(((bit >> 15) & 0x00000001)) Set_servo_5p(&servo_k_3_4);
-      else Set_servo_9p(&servo_k_3_4);
+    Set_servo_xp(&servo_k_3_5, K3_W5_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_5, K3_W5_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_5, K3_W5_RELEASE);
+    HAL_Delay(500);
 
-      if(((bit >> 16) & 0x00000001)) Set_servo_5p(&servo_k_3_5);
-      else Set_servo_9p(&servo_k_3_5);
-
-      if(((bit >> 17) & 0x00000001)) Set_servo_5p(&servo_k_3_6);
-      else Set_servo_9p(&servo_k_3_6);
-
-      if(((bit >> 18) & 0x00000001)) Set_servo_5p(&servo_k_4_1);
-      else Set_servo_9p(&servo_k_4_1);
-
-      if(((bit >> 19) & 0x00000001)) Set_servo_5p(&servo_k_4_2);
-      else Set_servo_9p(&servo_k_4_2);
-
-      if(((bit >> 20) & 0x00000001)) Set_servo_5p(&servo_k_4_3);
-      else Set_servo_9p(&servo_k_4_3);
-
-      if(((bit >> 21) & 0x00000001)) Set_servo_5p(&servo_k_4_4);
-      else Set_servo_9p(&servo_k_4_4);
-
-      if(((bit >> 22) & 0x00000001)) Set_servo_5p(&servo_k_4_5);
-      else Set_servo_9p(&servo_k_4_5);
-
-      if(((bit >> 23) & 0x00000001)) Set_servo_5p(&servo_k_4_6);
-      else Set_servo_9p(&servo_k_4_6);
-
-      HAL_Delay(250);
-
-      if( (count != 1) && (count != 2) && (count != 3) && (count != 4) &&     \
-          (count != 5) && (count != 12) && (count != 19) && (count != 24) &&  \
-          (count != 25) && (count != 32) && (count != 39) && (count != 47) && \
-          (count != 52) && (count != 54) && (count != 59) && (count != 76) && \
-          (count != 85) && (count != 88) && (count != 95))
-      {
-        HAL_Delay(250);
-      }
-      else if((count == 1) || (count == 2) || (count == 3) || (count == 4) ||     \
-              (count == 5) || (count == 12) || (count == 19) || (count == 24) ||  \
-              (count == 25) || (count == 39) || (count == 47) || (count == 52) || \
-              (count == 59) || (count == 76) || (count == 85) || (count == 88) || \
-              (count == 95))
-      {
-        HAL_Delay(750);
-      }
-      else if((count == 32) || ( count == 54))
-      {
-        HAL_Delay(1250);
-      }
-    }
+    Set_servo_xp(&servo_k_3_6, K3_W6_RELEASE);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_6, K3_W6_PRESS);
+    HAL_Delay(timeLoop);
+    Set_servo_xp(&servo_k_3_6, K3_W6_RELEASE);
+    HAL_Delay(500);
+    
 
   }
   /* USER CODE END 3 */

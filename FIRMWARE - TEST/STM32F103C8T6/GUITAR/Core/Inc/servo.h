@@ -2,27 +2,52 @@
 #ifndef SERVO_H_
 #define SERVO_H_
 
-//
-//	Servo
-//
-#define TURNIGY_TG9E
+// Khai bao goc cho cac day gay khoang 3
+#define K3_W1_RELEASE       (50)
+#define K3_W1_PRESS         (72)
 
-//
-//	Defines
-//
+#define K3_W2_RELEASE       (50)
+#define K3_W2_PRESS         (73)
 
-// For Turnigy TG9e
-#ifdef	TURNIGY_TG9E
-#endif
+#define K3_W3_RELEASE       (70)
+#define K3_W3_PRESS         (97)
+
+#define K3_W4_RELEASE       (80)
+#define K3_W4_PRESS         (60)
+
+#define K3_W5_RELEASE       (80)
+#define K3_W5_PRESS         (53)
+
+#define K3_W6_RELEASE       (80)
+#define K3_W6_PRESS         (53)
+
+// Khai bao goc cho cac day gay khoang 4
+#define K4_W1_RELEASE       ()
+#define K4_W1_PRESS         ()
+
+#define K4_W2_RELEASE       ()
+#define K4_W2_PRESS         ()
+
+#define K4_W3_RELEASE       ()
+#define K4_W3_PRESS         ()
+
+#define K4_W4_RELEASE       ()
+#define K4_W4_PRESS         ()
+
+#define K4_W5_RELEASE       ()
+#define K4_W5_PRESS         ()
+
+#define K4_W6_RELEASE       ()
+#define K4_W6_PRESS         ()
+
 
 typedef struct {
     TIM_HandleTypeDef* htim;
     uint32_t channel;
 } servo_t;
 
-void Set_servo_5p(servo_t *servo);
+
 void Servo_Init(servo_t *servo, TIM_HandleTypeDef *_htim, uint32_t _channel);
-void Set_servo_9p(servo_t *servo);
-void Set_servo(uint32_t t);
+void Set_servo_xp(servo_t *servo, uint8_t x);
 
 #endif /* SERVO_H_ */
