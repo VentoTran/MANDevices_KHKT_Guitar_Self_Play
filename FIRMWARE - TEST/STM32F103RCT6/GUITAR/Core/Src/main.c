@@ -245,8 +245,13 @@ servo_t servo_k_2_6 = {
   TIM_CHANNEL_1
 };
 
-volatile bool isReady = false;
-uint8_t buf = '\0';
+// volatile bool isReady = false;
+
+uint8_t RX3_CHAR = '\0';
+int RX3_INX = 0;
+uint8_t RX3_BUF[10] = {0};
+uint8_t RX3_DATA = '\0';
+volatile bool isCommand_OK = true;
 
 /* USER CODE END PV */
 
@@ -258,9 +263,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart == &huart3)
   {
-    isReady = true;
+    if (RX3_CHAR != '\0')
+    {
+      RX3_BUF[RX3_INX++] = RX3_CHAR;
+      if (RX3_CHAR == 0x03)
+      {
+        RX3_DATA = RX3_BUF[RX3_INX - 2];
+        RX3_INX = 0;
+        RX3_CHAR = '\0';
+        memset(RX3_BUF, '\0', sizeof(RX3_BUF));
+        isCommand_OK = true;
+      }
+      RX3_CHAR = '\0';
+    }
   }
-  HAL_UART_Receive_IT(&huart3, &buf, 1);
+  HAL_UART_Receive_IT(&huart3, &RX3_CHAR, 1);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -275,6 +292,27 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+bool sendCommand(uint8_t fret, uint8_t wire, uint8_t state)
+{
+  uint8_t data2send[3];
+  data2send[0] = 0xC0;
+  data2send[1] = (uint8_t)((fret << 4) | (state << 3) | wire);
+  data2send[2] = 0x03;
+  RX3_CHAR = '\0';
+  isCommand_OK = false;
+
+  HAL_UART_Transmit(&huart3, data2send, 3, 200);
+
+  uint32_t TickStart = HAL_GetTick();
+  while (!((isCommand_OK == true) && (RX3_DATA == data2send[1])) && ((HAL_GetTick() - TickStart) <= 2000));
+
+  if (RX3_DATA != data2send[1])
+  {
+    return false;
+  }
+  return true;
+}
 
 /* USER CODE END 0 */
 
@@ -316,7 +354,7 @@ int main(void)
   MX_UART5_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart3, &buf, 1);
+  HAL_UART_Receive_IT(&huart3, &RX3_CHAR, 1);
 
 
 
@@ -333,31 +371,31 @@ int main(void)
   Servo_Init(&servo_w_6, servo_w_6.htim, servo_w_6.channel);
   Set_servo_xp(&servo_w_6, W6_S1);
 
-  Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
+  // Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W1_RELEASE);
+  // Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W2_RELEASE);
+  // Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W3_RELEASE);
+  // Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W4_RELEASE);
+  // Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W5_RELEASE);
+  // Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
+  // Set_servo_xp(&servo_k_2_1, K1_W6_RELEASE);
 
-  Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
-
-  Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
-
-  Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
-
-  Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
-
-  Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
-
-
-  Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
-  Set_servo_xp(&servo_k_2_1, K3_W1_RELEASE);
-  Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
-  Set_servo_xp(&servo_k_2_2, K3_W2_RELEASE);
-  Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
-  Set_servo_xp(&servo_k_2_3, K3_W3_RELEASE);
-  Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
-  Set_servo_xp(&servo_k_2_4, K3_W4_RELEASE);
-  Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
-  Set_servo_xp(&servo_k_2_5, K3_W5_RELEASE);
-  Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
-  Set_servo_xp(&servo_k_2_6, K3_W6_RELEASE);
+  // Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
+  // Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+  // Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
+  // Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+  // Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
+  // Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+  // Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
+  // Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+  // Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
+  // Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+  // Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
+  // Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
 
   // for(uint8_t j = 0; j < sizeof(Bai1) / sizeof(int); j++)
   // {
@@ -366,23 +404,21 @@ int main(void)
   // }
 
   // while (isReady == false);
-  Set_servo_xp(&servo_w_1, W1_S1);
-  Set_servo_xp(&servo_w_2, W2_S1);
-  Set_servo_xp(&servo_w_3, W3_S1);
-  Set_servo_xp(&servo_w_4, W4_S1);
-  Set_servo_xp(&servo_w_5, W5_S1);
-  Set_servo_xp(&servo_w_6, W6_S1);
+  // Set_servo_xp(&servo_w_1, W1_S1);
+  // Set_servo_xp(&servo_w_2, W2_S1);
+  // Set_servo_xp(&servo_w_3, W3_S1);
+  // Set_servo_xp(&servo_w_4, W4_S1);
+  // Set_servo_xp(&servo_w_5, W5_S1);
+  // Set_servo_xp(&servo_w_6, W6_S1);
 
   ILI9341_Unselect();
   ILI9341_TouchUnselect();
   ILI9341_Init();
   ILI9341_FillScreen(ILI9341_BLACK);
-
   HAL_Delay(500);
-
   ILI9341_FillScreen(ILI9341_WHITE);
 
-
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /* USER CODE END 2 */
 
@@ -393,6 +429,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    HAL_Delay(2000);
+    if (sendCommand(3, 1, 1) == false)
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    }
 
     // Set_servo_xp(&servo_k_1_1, 92);
     // HAL_Delay(300);
@@ -447,6 +489,8 @@ int main(void)
     // Set_servo_xp(&servo_w_5, W5_S2);
     // Set_servo_xp(&servo_w_6, W6_S2);
     // HAL_Delay(500);
+
+    //------------------------------------------------------
 
     // Set_servo_xp(&servo_w_1, W1_S1);
     // HAL_Delay(500);
