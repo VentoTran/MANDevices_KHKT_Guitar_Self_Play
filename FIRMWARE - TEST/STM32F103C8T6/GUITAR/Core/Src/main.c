@@ -196,18 +196,18 @@ int main(void)
   Servo_Init(&servo_k_3_6, servo_k_3_6.htim, servo_k_3_6.channel);
   Set_servo_xp(&servo_k_3_6, K3_W6_RELEASE);
 
-  Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
-  Set_servo_xp(&servo_k_4_1, K4_W1_RELEASE);
-  Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
-  Set_servo_xp(&servo_k_4_2, K4_W2_RELEASE);
-  Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
-  Set_servo_xp(&servo_k_4_3, K4_W3_RELEASE);
-  Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
-  Set_servo_xp(&servo_k_4_4, K4_W4_RELEASE);
-  Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
-  Set_servo_xp(&servo_k_4_5, K4_W5_RELEASE);
-  Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
-  Set_servo_xp(&servo_k_4_6, K4_W6_RELEASE);
+  // Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
+  // Set_servo_xp(&servo_k_4_1, K4_W1_RELEASE);
+  // Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  // Set_servo_xp(&servo_k_4_2, K4_W2_RELEASE);
+  // Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
+  // Set_servo_xp(&servo_k_4_3, K4_W3_RELEASE);
+  // Servo_Init(&servo_k_4_4, servo_k_4_4.htim, servo_k_4_4.channel);
+  // Set_servo_xp(&servo_k_4_4, K4_W4_RELEASE);
+  // Servo_Init(&servo_k_4_5, servo_k_4_5.htim, servo_k_4_5.channel);
+  // Set_servo_xp(&servo_k_4_5, K4_W5_RELEASE);
+  // Servo_Init(&servo_k_4_6, servo_k_4_6.htim, servo_k_4_6.channel);
+  // Set_servo_xp(&servo_k_4_6, K4_W6_RELEASE);
 
 
   uint32_t timeLoop = 2000;
@@ -226,7 +226,7 @@ int main(void)
     {
       uint8_t fret = (RX2_DATA >> 4) & 0x03;
       uint8_t state = (RX2_DATA >> 3) & 0x01;
-      uint8_t wire = (RX2_DATA & 0x03);
+      uint8_t wire = (RX2_DATA & 0x07);
 
       if (fret == FRET_3RD)
       {

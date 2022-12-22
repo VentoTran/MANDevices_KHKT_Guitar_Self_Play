@@ -196,7 +196,7 @@ int main(void)
 
   Servo_Init(&servo_k_4_1, servo_k_4_1.htim, servo_k_4_1.channel);
   Set_servo_xp(&servo_k_4_1, K4_W1_RELEASE);
-  Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
+  // Servo_Init(&servo_k_4_2, servo_k_4_2.htim, servo_k_4_2.channel);
   // Set_servo_xp(&servo_k_4_2, K4_W2_RELEASE);
   Servo_Init(&servo_k_4_3, servo_k_4_3.htim, servo_k_4_3.channel);
   Set_servo_xp(&servo_k_4_3, K4_W3_RELEASE);
@@ -470,6 +470,7 @@ int main(void)
   /* USER CODE END 3 */
   }
 }
+
 /**
   * @brief System Clock Configuration
   * @retval None

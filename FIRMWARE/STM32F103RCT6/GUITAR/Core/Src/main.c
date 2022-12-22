@@ -54,35 +54,35 @@
 
 /* Bài 1: Một nhà */
 uint32_t Bai1[] = {
-  0b00011111000000010000001000000010
-  // 0b00100001000000100010010000000000,
-  // 0b00111110000000000000001100000010, ///////
-  // 0b00110001000000001000000100000010,
-  // 0b00101101000000010000001000000000,
-  // 0b00101001000000000000000000000000,
-  // 0b00101000000000000000000000000000,
-  // 0b00101001000000000000000000000000,
-  // 0b00101000000000000000000000000000,
-  // 0b00101010000000000000000000000010,
-  // 0b00000100000000100000000000000000,
-  // 0b00000110000000000000000000000000,
-  // 0b00000100000000000000000000000000,
-  // 0b00000000000000000010000000000000, ////
-  // 0b00000010000000000000000000000010,
-  // 0b00000000000000000000000000000000,
-  // 0b00000010000000000000000000000000,
-  // 0b00010100000000000000000010000000,
-  // 0b00010000000000000000000100000000,
-  // 0b00010010000000000000000000000010,
-  // 0b00010000000000000000000000000010,
-  // 0b00010010000000000000000000000010,
-  // 0b00010110000000000000000000000000,
-  // 0b00011010000000001000000100000000,
-  // 0b00011000000000000000000000000010,
-  // 0b00011100000000000000000010000000,
-  // 0b00011101000000000000000000000000,
-  // 0b00011100000000000000000000000000,
-  // 0b00011110000000000010000000000000,
+  0b00011111000000010000001000000010,
+  0b00100001000000100010010000000000,
+  0b00111110000000000000001100000010, ///////
+  0b00110001000000001000000100000010,
+  0b00101101000000010000001000000000,
+  0b00101001000000000000000000000000,
+  0b00101000000000000000000000000000,
+  0b00101001000000000000000000000000,
+  0b00101000000000000000000000000000,
+  0b00101010000000000000000000000010,
+  0b00000100000000100000000000000000,
+  0b00000110000000000000000000000000,
+  0b00000100000000000000000000000000,
+  0b00000000000000000010000000000000, ////
+  0b00000010000000000000000000000010,
+  0b00000000000000000000000000000000,
+  0b00000010000000000000000000000000,
+  0b00010100000000000000000010000000,
+  0b00010000000000000000000100000000,
+  0b00010010000000000000000000000010,
+  0b00010000000000000000000000000010,
+  0b00010010000000000000000000000010,
+  0b00010110000000000000000000000000,
+  0b00011010000000001000000100000000,
+  0b00011000000000000000000000000010,
+  0b00011100000000000000000010000000,
+  0b00011101000000000000000000000000,
+  0b00011100000000000000000000000000,
+  0b00011110000000000010000000000000,
   // 0b00011100000000000000000000000010,
   // 0b00001010000000010000000000000010,
   // 0b00000010000000000000001000000000,
@@ -275,6 +275,56 @@ uint32_t Bai1[] = {
 //   0b00011000000100000000000000000000,
 //   0b00011010000000000010000000000000, // tamj hets o thu 13
 // };
+
+
+uint32_t const Song0[] = {
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00000001000000000000000000000000,
+    0b00000000000000000000000000000001,
+    0b00000001000000000000000000000100,
+    0b00000011000000000010000000000000,
+  //----654321654321654321654321654321
+    0b00000111000000000000000000000000,
+    0b00001111000000000000000000000000,
+    0b00011111000000000000000000010000,
+    0b00111111000000000000000000000000,
+    0b00011111000000100000000000000000,
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00111010000000000000000100010000,
+    0b00101100000000010000000010000000,
+    0b00110111000000000000000100010100,
+    0b00010010000000000100000000000001,
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00101001000000100000000000000100,
+    0b00101011000000000000000000000000,
+    0b00111001000000000000000001000000,
+    0b00101011000000000000000100010000,
+    /*
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+  //----654321654321654321654321654321
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+    0b00000000000000000000000000000000,
+  //----654321654321654321654321654321
+  */
+};
+
 /* Define for 6 servo gay */
 servo_t servo_w_1 = {
     &htim1,
@@ -361,11 +411,32 @@ uint8_t RX3_BUF[10] = {0};
 uint8_t RX3_DATA = '\0';
 volatile bool isCommand_OK = true;
 
+uint32_t timeLoop0 = 200;
+uint32_t timeLoop1 = 500;
+uint32_t timeLoop2 = 1000;
+uint32_t timeLoop3 = 1000;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+
+void setupServo(void);
+void resetServo(void);
+
+void K1_test(void);
+void K2_test(void);
+void K3_test(void);
+void K4_test(void);
+
+void W_test(void);
+
+void Song0_test(void);
+
+void Song1_test(void);
+
+void playSong(const uint32_t* Song, uint32_t len);
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
@@ -471,45 +542,9 @@ int main(void)
 
   // ILI9341_FillScreen(ILI9341_WHITE);
 
-  Servo_Init(&servo_w_1, servo_w_1.htim, servo_w_1.channel);
-  Set_servo_xp(&servo_w_1, W1_S1);
-  Servo_Init(&servo_w_2, servo_w_2.htim, servo_w_2.channel);
-  Set_servo_xp(&servo_w_2, W2_S1);
-  Servo_Init(&servo_w_3, servo_w_3.htim, servo_w_3.channel);
-  Set_servo_xp(&servo_w_3, W3_S1);
-  Servo_Init(&servo_w_4, servo_w_4.htim, servo_w_4.channel);
-  Set_servo_xp(&servo_w_4, W4_S1);
-  Servo_Init(&servo_w_5, servo_w_5.htim, servo_w_5.channel);
-  Set_servo_xp(&servo_w_5, W5_S1);
-  Servo_Init(&servo_w_6, servo_w_6.htim, servo_w_6.channel);
-  Set_servo_xp(&servo_w_6, W6_S1);
 
+  setupServo();
 
-  Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
-  Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);
-  Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
-  // Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
-  Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
-  Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
-  // Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
-  // Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
-  Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
-  Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
-  Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
-  Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
-
-  Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
-  Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
-  Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
-  Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
-  Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
-  Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
-  Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
-  Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
-  Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
-  Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
-  // Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
-  // Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
 
   /* USER CODE END 2 */
 
@@ -520,259 +555,30 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-     Set_servo_xp(&servo_w_1, W1_S1);
-      Set_servo_xp(&servo_w_2, W2_S1);
-     Set_servo_xp(&servo_w_3, W3_S1);
-     Set_servo_xp(&servo_w_4, W4_S1);
-
-     Set_servo_xp(&servo_w_5, W5_S1);
-     Set_servo_xp(&servo_w_6, W6_S1);
-    HAL_Delay(2000);
-    // for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
-    // {
-    //   uint32_t bit = Bai1[i];
-
-      // check khoang 1
-      // if((bit & 0x0000001)) Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);            // bit 1 trong not nhac
-      // else Set_servo_xp(&servo_k_1_1, K1_W1_PRESS);
-
-      // // if(((bit >> 1) & 0x00000001)) Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
-      // // else Set_servo_xp(&servo_k_1_2, K1_W2_PRESS);
-
-      // if(((bit >> 2) & 0x00000001)) Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
-      // else Set_servo_xp(&servo_k_1_3, K1_W3_PRESS);
-
-      // if(((bit >> 3) & 0x00000001)) Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
-      // else Set_servo_xp(&servo_k_1_4, K1_W4_PRESS);
-    
-      // if(((bit >> 4) & 0x00000001)) Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
-      // else Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
-
-      // if(((bit >> 5) & 0x00000001)) Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
-      // else Set_servo_xp(&servo_k_1_6, K1_W6_PRESS);
-
-      // check khoang 2
-      // if(((bit >> 6) & 0x00000001)) Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
-      // else Set_servo_xp(&servo_k_2_1, K2_W1_PRESS);
-
-      // if(((bit >> 7) & 0x00000001)) Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
-      // else Set_servo_xp(&servo_k_2_2, K2_W2_PRESS);
-
-      // if(((bit >> 8) & 0x00000001)) Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
-      // else Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
-
-      // if(((bit >> 9) & 0x00000001)) Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
-      // else Set_servo_xp(&servo_k_2_4, K2_W4_PRESS);
-
-      // if(((bit >> 10) & 0x00000001)) Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
-      // else Set_servo_xp(&servo_k_2_5, K2_W5_PRESS);
-
-      // if(((bit >> 11) & 0x00000001)) Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
-      // else Set_servo_xp(&servo_k_2_6, K2_W6_PRESS);
-
-      // check khoang 3
-      // if(((bit >> 12) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 1, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 1, 1) == true);
       
-      // if(((bit >> 13) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 2, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 2, 1) == true);
+      // W_test();
 
-      // if(((bit >> 14) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 3, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 3, 1) == true);
+      // K1_test();
 
-      // if(((bit >> 15) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 4, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 4, 1) == true);
+      // K2_test();
 
-      // if(((bit >> 16) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 5, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 5, 1) == true);
+      // K3_test();
 
-      // if(((bit >> 17) & 0x00000001))
-      //   {
-      //     if(sendCommand(3, 6, 0) == true);
-      //   }
-      //   else if(sendCommand(3, 6, 1) == true);
+      // K4_test();
 
-      // //check khoang 4
-      // if(((bit >> 18) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 1, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 1, 1) == true);
+      // Song0_test();
 
-      // if(((bit >> 19) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 2, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 2, 1) == true);
+      // Song1_test();
 
-      // if(((bit >> 20) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 3, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 3, 1) == true);
+      playSong(Song0, sizeof(Song0) / sizeof(uint32_t));
 
-      // if(((bit >> 21) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 4, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 4, 1) == true);
+      HAL_Delay(timeLoop3);
 
-      // if(((bit >> 22) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 5, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 5, 1) == true);
+      resetServo();
 
-      // if(((bit >> 23) & 0x00000001))
-      //   {
-      //     if(sendCommand(4, 6, 0) == true);
-      //   }
-      //   else if(sendCommand(4, 6, 1) == true);
-
-      // HAL_Delay(600);
-
-      //   if(((bit >> 24) & 0x00000001)) {Set_servo_xp(&servo_w_1, W1_S1);}
-      //   else Set_servo_xp(&servo_w_1, W1_S2);
-
-      //   if(((bit >> 25) & 0x00000001)) {Set_servo_xp(&servo_w_2, W2_S1);}
-      //   else Set_servo_xp(&servo_w_2, W2_S2);
-
-      //   if(((bit >> 26) & 0x00000001)) {Set_servo_xp(&servo_w_3, W3_S1);}
-      //   else Set_servo_xp(&servo_w_3, W3_S2);
-
-      //   if(((bit >> 27) & 0x00000001)) {Set_servo_xp(&servo_w_4, W4_S1);}
-      //   else Set_servo_xp(&servo_w_4, W4_S2);
-
-      //   if(((bit >> 28) & 0x00000001)) {Set_servo_xp(&servo_w_5, W5_S1);}
-      //   else Set_servo_xp(&servo_w_5, W5_S2);
-
-      //   if(((bit >> 29) & 0x00000001)) {Set_servo_xp(&servo_w_6, W6_S1);}
-      //   else Set_servo_xp(&servo_w_6, W6_S2);
+      HAL_Delay(timeLoop3);
 
 
-        // if( (i != 1) && (i != 2) && (i != 3) && (i != 4) &&     
-        //     (i != 5) && (i != 12) && (i != 19) && (i != 24) &&  
-        //     (i != 25) && (i != 32) && (i != 39) && (i != 47) && 
-        //     (i != 52) && (i != 54) && (i != 59) && (i != 76) && 
-        //     (i != 85) && (i != 88) && (i != 95))
-        // {
-        //   HAL_Delay(250);
-        // }
-        // else if((i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) ||       
-        //         (i == 12) || (i == 19) || (i == 24) || (i == 25) || (i == 39) ||  
-        //         (i == 47) || (i == 52) || (i == 59) || (i == 76) || (i == 85) ||  
-        //         (i == 88) || (i == 95))
-        // {
-        //   HAL_Delay(750);
-        // }
-        // else if((i == 32) || ( i == 54))
-        // {
-        //   HAL_Delay(1250);
-        // }
-
-        // HAL_Delay(600);
-    // }
-
-
-    /* test */
-    uint32_t timeloop = 800;
-    
-    // if(sendCommand(3, 2, 1) == true)
-    // {
-    //   HAL_Delay(450);
-    //   Set_servo_xp(&servo_w_2, W2_S2);
-    //   HAL_Delay(timeloop);
-    // }
-
-    // if(sendCommand(3, 2, 0) == true)
-    // {
-    //   HAL_Delay(timeloop);
-    // }
-
-    // Set_servo_xp(&servo_w_3, W3_S2);
-    // HAL_Delay(timeloop); 
-
-    // Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
-    // HAL_Delay(450);
-    // Set_servo_xp(&servo_w_3, W3_S1);
-    // HAL_Delay(timeloop);
-    // Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
-    // HAL_Delay(timeloop);
-    
-    // if(sendCommand(3, 3, 1) == true)
-    // {
-    //   HAL_Delay(450);
-    //   Set_servo_xp(&servo_w_3, W3_S2);
-    //   HAL_Delay(timeloop); 
-    // }
-    // if(sendCommand(3, 3, 0) == true)
-    // {
-    //   HAL_Delay(timeloop);
-    // }
-
-    // Set_servo_xp(&servo_w_4, W4_S2);
-    // HAL_Delay(timeloop);
-
-    // Set_servo_xp(&servo_k_2_4, K1_W4_PRESS);
-    // HAL_Delay(450);
-    // Set_servo_xp(&servo_w_4, W4_S1);
-    // HAL_Delay(timeloop);
-    // Set_servo_xp(&servo_k_2_4, K1_W4_RELEASE);
-    // HAL_Delay(timeloop);
-
-    // Set_servo_xp(&servo_w_5, W5_S2);
-    // HAL_Delay(timeloop);
-
-    // Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
-    // HAL_Delay(450);
-    // Set_servo_xp(&servo_w_5, W5_S1);
-    // HAL_Delay(timeloop);
-    // Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
-    // HAL_Delay(timeloop);
-
-    // if(sendCommand(3, 5, 1) == true)
-    // {
-    //   HAL_Delay(450);
-    //   Set_servo_xp(&servo_w_5, W5_S2);
-    //   HAL_Delay(timeloop);
-    // }
-    // if(sendCommand(3, 5, 0) == true)
-    // {
-    //   HAL_Delay(timeloop);
-    // }
-    
-    // Set_servo_xp(&servo_w_6, W6_S2);
-    // HAL_Delay(timeloop);
-  
-     
-
-    
-    
-   uint32_t timeLoop = 2000;
-
-    // Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
-    // HAL_Delay(timeLoop);
-    // Set_servo_xp(&servo_k_1_4, K1_W4_PRESS);
-    // HAL_Delay(timeLoop);
-    // Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
-    // HAL_Delay(1000);
-    // Set_servo_xp(&servo_k_1_4, 85);
-    // HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -817,6 +623,661 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void resetServo(void)
+{
+  Set_servo_xp(&servo_w_1, W1_S1);
+  Set_servo_xp(&servo_w_2, W2_S1);
+  Set_servo_xp(&servo_w_3, W3_S1);
+  Set_servo_xp(&servo_w_4, W4_S1);
+  Set_servo_xp(&servo_w_5, W5_S1);
+  Set_servo_xp(&servo_w_6, W6_S1);
+
+  Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);
+  Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
+  Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
+  Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
+  Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+  Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
+
+  Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+  Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+  Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+  Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+  Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+  Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
+
+  while(sendCommand(K3, W1, 0) == false);
+  while(sendCommand(K3, W2, 0) == false);
+  while(sendCommand(K3, W3, 0) == false);
+  while(sendCommand(K3, W4, 0) == false);
+  while(sendCommand(K3, W5, 0) == false);
+  while(sendCommand(K3, W6, 0) == false);
+
+}
+
+void setupServo(void)
+{
+  Servo_Init(&servo_w_1, servo_w_1.htim, servo_w_1.channel);
+  Set_servo_xp(&servo_w_1, W1_S1);
+  Servo_Init(&servo_w_2, servo_w_2.htim, servo_w_2.channel);
+  Set_servo_xp(&servo_w_2, W2_S1);
+  Servo_Init(&servo_w_3, servo_w_3.htim, servo_w_3.channel);
+  Set_servo_xp(&servo_w_3, W3_S1);
+  Servo_Init(&servo_w_4, servo_w_4.htim, servo_w_4.channel);
+  Set_servo_xp(&servo_w_4, W4_S1);
+  Servo_Init(&servo_w_5, servo_w_5.htim, servo_w_5.channel);
+  Set_servo_xp(&servo_w_5, W5_S1);
+  Servo_Init(&servo_w_6, servo_w_6.htim, servo_w_6.channel);
+  Set_servo_xp(&servo_w_6, W6_S1);
+
+
+  Servo_Init(&servo_k_1_1, servo_k_1_1.htim, servo_k_1_1.channel);
+  Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);
+  Servo_Init(&servo_k_1_2, servo_k_1_2.htim, servo_k_1_2.channel);
+  Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
+  Servo_Init(&servo_k_1_3, servo_k_1_3.htim, servo_k_1_3.channel);
+  Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
+  Servo_Init(&servo_k_1_4, servo_k_1_4.htim, servo_k_1_4.channel);
+  Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
+  Servo_Init(&servo_k_1_5, servo_k_1_5.htim, servo_k_1_5.channel);
+  Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+  Servo_Init(&servo_k_1_6, servo_k_1_6.htim, servo_k_1_6.channel);
+  Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
+
+  Servo_Init(&servo_k_2_1, servo_k_2_1.htim, servo_k_2_1.channel);
+  Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+  Servo_Init(&servo_k_2_2, servo_k_2_2.htim, servo_k_2_2.channel);
+  Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+  Servo_Init(&servo_k_2_3, servo_k_2_3.htim, servo_k_2_3.channel);
+  Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+  Servo_Init(&servo_k_2_4, servo_k_2_4.htim, servo_k_2_4.channel);
+  Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+  Servo_Init(&servo_k_2_5, servo_k_2_5.htim, servo_k_2_5.channel);
+  Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+  Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
+  Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
+}
+
+void K1_test(void)
+{
+
+  Set_servo_xp(&servo_k_1_1, K1_W1_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_1_2, K1_W2_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_1_3, K1_W3_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_1_4, K1_W4_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_1_6, K1_W6_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
+  HAL_Delay(timeLoop2);
+
+}
+
+void K2_test(void)
+{
+
+  Set_servo_xp(&servo_k_2_1, K2_W1_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_2_2, K2_W2_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_2_4, K2_W4_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_2_5, K2_W5_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+  HAL_Delay(timeLoop2);
+
+  Set_servo_xp(&servo_k_2_6, K2_W6_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
+  HAL_Delay(timeLoop2);
+
+}
+
+void K3_test(void)
+{
+
+  while(sendCommand(K3, W1, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W1, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W2, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W2, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W3, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W3, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W4, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W4, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W5, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W5, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W6, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W6, 0) == false);
+  HAL_Delay(timeLoop1);
+
+}
+
+void K4_test(void)
+{
+
+  while(sendCommand(K4, W1, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W1, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W2, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W2, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W3, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W3, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W4, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W4, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W5, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W5, 0) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W6, 1) == false);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K4, W6, 0) == false);
+  HAL_Delay(timeLoop1);
+
+}
+
+void W_test(void)
+{
+  Set_servo_xp(&servo_w_1, W1_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_2, W2_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_3, W3_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_4, W4_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_5, W5_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_6, W6_S1);
+
+  HAL_Delay(timeLoop3);
+  
+  Set_servo_xp(&servo_w_1, W1_S2);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_2, W2_S2);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_3, W3_S2);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_4, W4_S2);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_5, W5_S2);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_6, W6_S2);
+
+  HAL_Delay(timeLoop3);
+}
+
+void Song0_test(void)
+{
+
+  /* test */
+  setupServo();
+
+  while(sendCommand(K3, W2, 1) == false);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_2, W2_S2);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W2, 0) == false);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_w_3, W3_S2);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_3, W3_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+  HAL_Delay(timeLoop1);
+  
+  while(sendCommand(K3, W3, 1) == false);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_3, W3_S2);
+  HAL_Delay(timeLoop1); 
+  while(sendCommand(K3, W3, 0) == false);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_w_4, W4_S2);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_k_2_4, K1_W4_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_4, W4_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_2_4, K1_W4_RELEASE);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_w_5, W5_S2);
+  HAL_Delay(timeLoop1);
+
+  Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_5, W5_S1);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+  HAL_Delay(timeLoop1);
+
+  while(sendCommand(K3, W5, 1) == false);
+  HAL_Delay(timeLoop1);
+  Set_servo_xp(&servo_w_5, W5_S2);
+  HAL_Delay(timeLoop1);
+  while(sendCommand(K3, W5, 0) == false);
+  HAL_Delay(timeLoop1);
+  
+  Set_servo_xp(&servo_w_6, W6_S2);
+  HAL_Delay(timeLoop1);
+
+  setupServo();
+}
+
+void Song1_test(void)
+{
+  for(uint8_t i = 0; i < sizeof(Bai1) / sizeof(int); i++)
+  {
+    uint32_t bit = Bai1[i];
+
+    // check khoang 1
+    if((bit & 0x0000001) == 0) Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);            // bit 1 trong not nhac
+    else Set_servo_xp(&servo_k_1_1, K1_W1_PRESS);
+
+    // if(((bit >> 1) & 0x00000001)) Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
+    // else Set_servo_xp(&servo_k_1_2, K1_W2_PRESS);
+
+    if(((bit >> 2) & 0x00000001) == 0) Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
+    else Set_servo_xp(&servo_k_1_3, K1_W3_PRESS);
+
+    // if(((bit >> 3) & 0x00000001)) Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
+    // else Set_servo_xp(&servo_k_1_4, K1_W4_PRESS);
+  
+    if(((bit >> 4) & 0x00000001) == 0) Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+    else Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
+
+    if(((bit >> 5) & 0x00000001)) Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
+    else Set_servo_xp(&servo_k_1_6, K1_W6_PRESS);
+
+    // check khoang 2
+    if(((bit >> 6) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+    else Set_servo_xp(&servo_k_2_1, K2_W1_PRESS);
+
+    if(((bit >> 7) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+    else Set_servo_xp(&servo_k_2_2, K2_W2_PRESS);
+
+    // if(((bit >> 8) & 0x00000001)) Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+    // else Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
+
+    // if(((bit >> 9) & 0x00000001)) Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+    // else Set_servo_xp(&servo_k_2_4, K2_W4_PRESS);
+
+    if(((bit >> 10) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+    else Set_servo_xp(&servo_k_2_5, K2_W5_PRESS);
+
+    // if(((bit >> 11) & 0x00000001)) Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
+    // else Set_servo_xp(&servo_k_2_6, K2_W6_PRESS);
+
+    // check khoang 3
+    if(((bit >> 12) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W1, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W1, 1) == false);
+    }
+    if(((bit >> 13) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W2, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W2, 1) == false);
+    }
+    if(((bit >> 14) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W3, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W3, 1) == false);
+    }
+    if(((bit >> 15) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W4, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W4, 1) == false);
+    }
+    if(((bit >> 16) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W5, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W5, 1) == false);
+    }
+    if(((bit >> 17) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W6, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W6, 1) == false);
+    }
+    
+    // //check khoang 4
+    // if(((bit >> 18) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W1, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W1, 1) == false);
+    // }
+    // if(((bit >> 19) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W2, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W2, 1) == false);
+    // }
+    // if(((bit >> 20) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W3, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W3, 1) == false);
+    // }
+    // if(((bit >> 21) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W4, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W4, 1) == false);
+    // }
+    // if(((bit >> 22) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W5, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W5, 1) == false);
+    // }
+    // if(((bit >> 23) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W6, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W6, 1) == false);
+    // }
+
+    HAL_Delay(500);
+
+    if(((bit >> 24) & 0x00000001) == 0) {Set_servo_xp(&servo_w_1, W1_S1);}
+    else Set_servo_xp(&servo_w_1, W1_S2);
+
+    if(((bit >> 25) & 0x00000001) == 0) {Set_servo_xp(&servo_w_2, W2_S1);}
+    else Set_servo_xp(&servo_w_2, W2_S2);
+
+    if(((bit >> 26) & 0x00000001) == 0) {Set_servo_xp(&servo_w_3, W3_S1);}
+    else Set_servo_xp(&servo_w_3, W3_S2);
+
+    if(((bit >> 27) & 0x00000001) == 0) {Set_servo_xp(&servo_w_4, W4_S1);}
+    else Set_servo_xp(&servo_w_4, W4_S2);
+
+    if(((bit >> 28) & 0x00000001) == 0) {Set_servo_xp(&servo_w_5, W5_S1);}
+    else Set_servo_xp(&servo_w_5, W5_S2);
+
+    if(((bit >> 29) & 0x00000001) == 0) {Set_servo_xp(&servo_w_6, W6_S1);}
+    else Set_servo_xp(&servo_w_6, W6_S2);
+
+
+    if( (i != 1) && (i != 2) && (i != 3) && (i != 4) &&     
+        (i != 5) && (i != 12) && (i != 19) && (i != 24) &&  
+        (i != 25) && (i != 32) && (i != 39) && (i != 47) && 
+        (i != 52) && (i != 54) && (i != 59) && (i != 76) && 
+        (i != 85) && (i != 88) && (i != 95))
+    {
+      HAL_Delay(250);
+    }
+    else if((i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) ||       
+            (i == 12) || (i == 19) || (i == 24) || (i == 25) || (i == 39) ||  
+            (i == 47) || (i == 52) || (i == 59) || (i == 76) || (i == 85) ||  
+            (i == 88) || (i == 95))
+    {
+      HAL_Delay(750);
+    }
+    else if((i == 32) || ( i == 54))
+    {
+      HAL_Delay(1250);
+    }
+
+    HAL_Delay(600);
+  }
+}
+
+void playSong(const uint32_t* Song, uint32_t len)
+{
+  for(uint8_t i = 0; i < len; i++)
+  {
+    uint32_t bit = Song[i];
+// check khoang 1
+    if((bit & 0x0000001) == 0) Set_servo_xp(&servo_k_1_1, K1_W1_RELEASE);            // bit 1 trong not nhac
+    else Set_servo_xp(&servo_k_1_1, K1_W1_PRESS);
+
+    // if(((bit >> 1) & 0x00000001)) Set_servo_xp(&servo_k_1_2, K1_W2_RELEASE);
+    // else Set_servo_xp(&servo_k_1_2, K1_W2_PRESS);
+
+    if(((bit >> 2) & 0x00000001) == 0) Set_servo_xp(&servo_k_1_3, K1_W3_RELEASE);
+    else Set_servo_xp(&servo_k_1_3, K1_W3_PRESS);
+
+    // if(((bit >> 3) & 0x00000001)) Set_servo_xp(&servo_k_1_4, K1_W4_RELEASE);
+    // else Set_servo_xp(&servo_k_1_4, K1_W4_PRESS);
+  
+    if(((bit >> 4) & 0x00000001) == 0) Set_servo_xp(&servo_k_1_5, K1_W5_RELEASE);
+    else Set_servo_xp(&servo_k_1_5, K1_W5_PRESS);
+
+    if(((bit >> 5) & 0x00000001) == 0) Set_servo_xp(&servo_k_1_6, K1_W6_RELEASE);
+    else Set_servo_xp(&servo_k_1_6, K1_W6_PRESS);
+
+    // check khoang 2
+    if(((bit >> 6) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_1, K2_W1_RELEASE);
+    else Set_servo_xp(&servo_k_2_1, K2_W1_PRESS);
+
+    if(((bit >> 7) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_2, K2_W2_RELEASE);
+    else Set_servo_xp(&servo_k_2_2, K2_W2_PRESS);
+
+    // if(((bit >> 8) & 0x00000001)) Set_servo_xp(&servo_k_2_3, K2_W3_RELEASE);
+    // else Set_servo_xp(&servo_k_2_3, K2_W3_PRESS);
+
+    // if(((bit >> 9) & 0x00000001)) Set_servo_xp(&servo_k_2_4, K2_W4_RELEASE);
+    // else Set_servo_xp(&servo_k_2_4, K2_W4_PRESS);
+
+    if(((bit >> 10) & 0x00000001) == 0) Set_servo_xp(&servo_k_2_5, K2_W5_RELEASE);
+    else Set_servo_xp(&servo_k_2_5, K2_W5_PRESS);
+
+    // if(((bit >> 11) & 0x00000001)) Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
+    // else Set_servo_xp(&servo_k_2_6, K2_W6_PRESS);
+
+    // check khoang 3
+    if(((bit >> 12) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W1, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W1, 1) == false);
+    }
+    if(((bit >> 13) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W2, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W2, 1) == false);
+    }
+    if(((bit >> 14) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W3, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W3, 1) == false);
+    }
+    if(((bit >> 15) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W4, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W4, 1) == false);
+    }
+    if(((bit >> 16) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W5, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W5, 1) == false);
+    }
+    if(((bit >> 17) & 0x00000001) == 0)
+    {
+      while(sendCommand(K3, W6, 0) == false);
+    }
+    else
+    {
+      while(sendCommand(K3, W6, 1) == false);
+    }
+    
+    // //check khoang 4
+    // if(((bit >> 18) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W1, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W1, 1) == false);
+    // }
+    // if(((bit >> 19) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W2, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W2, 1) == false);
+    // }
+    // if(((bit >> 20) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W3, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W3, 1) == false);
+    // }
+    // if(((bit >> 21) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W4, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W4, 1) == false);
+    // }
+    // if(((bit >> 22) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W5, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W5, 1) == false);
+    // }
+    // if(((bit >> 23) & 0x00000001) == 0)
+    // {
+    //   while(sendCommand(K4, W6, 0) == false);
+    // }
+    // else
+    // {
+    //   while(sendCommand(K4, W6, 1) == false);
+    // }
+
+    HAL_Delay(500);
+
+    if(((bit >> 24) & 0x00000001) == 0) {Set_servo_xp(&servo_w_1, W1_S1);}
+    else Set_servo_xp(&servo_w_1, W1_S2);
+
+    if(((bit >> 25) & 0x00000001) == 0) {Set_servo_xp(&servo_w_2, W2_S1);}
+    else Set_servo_xp(&servo_w_2, W2_S2);
+
+    if(((bit >> 26) & 0x00000001) == 0) {Set_servo_xp(&servo_w_3, W3_S1);}
+    else Set_servo_xp(&servo_w_3, W3_S2);
+
+    if(((bit >> 27) & 0x00000001) == 0) {Set_servo_xp(&servo_w_4, W4_S1);}
+    else Set_servo_xp(&servo_w_4, W4_S2);
+
+    if(((bit >> 28) & 0x00000001) == 0) {Set_servo_xp(&servo_w_5, W5_S1);}
+    else Set_servo_xp(&servo_w_5, W5_S2);
+
+    if(((bit >> 29) & 0x00000001) == 0) {Set_servo_xp(&servo_w_6, W6_S1);}
+    else Set_servo_xp(&servo_w_6, W6_S2);
+
+    HAL_Delay(500);
+  }
+}
 
 /* USER CODE END 4 */
 

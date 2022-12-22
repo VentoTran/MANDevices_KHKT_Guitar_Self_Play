@@ -16,11 +16,11 @@
 #define K3_W1_RELEASE       (65)
 #define K3_W1_PRESS         (85)
 
-#define K3_W2_RELEASE       (95)    // dang hong
-#define K3_W2_PRESS         (135)
+#define K3_W2_RELEASE       (95)    
+#define K3_W2_PRESS         (150)
 
 #define K3_W3_RELEASE       (130)   
-#define K3_W3_PRESS         (153)
+#define K3_W3_PRESS         (157)
 
 #define K3_W4_RELEASE       (70)
 #define K3_W4_PRESS         (30)
@@ -29,7 +29,7 @@
 #define K3_W5_PRESS         (53)    
 
 #define K3_W6_RELEASE       (67)
-#define K3_W6_PRESS         (45)
+#define K3_W6_PRESS         (40)
 
 // Khai bao goc cho cac day gay khoang 4
 #define K4_W1_RELEASE       (87)

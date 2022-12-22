@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "string.h"
 #include "servo.h"
 #include "lcd.h"
 #include "touch.h"
@@ -37,6 +38,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define NO_ERROR    (true)
+#define ERROR       (false)
+
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -397,19 +404,49 @@ int main(void)
   // Servo_Init(&servo_k_2_6, servo_k_2_6.htim, servo_k_2_6.channel);
   // Set_servo_xp(&servo_k_2_6, K2_W6_RELEASE);
 
-  // for(uint8_t j = 0; j < sizeof(Bai1) / sizeof(int); j++)
-  // {
-  //   uint32_t bitt = Bai1[j];
-  //   HAL_UART_Transmit(&huart3, (uint8_t*)&bitt, 4, 1000);
-  // }
+  HAL_Delay(3000);
 
-  // while (isReady == false);
-  // Set_servo_xp(&servo_w_1, W1_S1);
-  // Set_servo_xp(&servo_w_2, W2_S1);
-  // Set_servo_xp(&servo_w_3, W3_S1);
-  // Set_servo_xp(&servo_w_4, W4_S1);
-  // Set_servo_xp(&servo_w_5, W5_S1);
-  // Set_servo_xp(&servo_w_6, W6_S1);
+  volatile bool error = ERROR;
+  uint8_t retryCount = 0;
+  while ((error == false) && (retryCount == 5))
+  {
+    error = true;
+    retryCount++;
+    error &= sendCommand(FRET_3RD, WIRE_1ST, SERVO_RELEASE);
+    error &= sendCommand(FRET_3RD, WIRE_2ND, SERVO_RELEASE);
+    error &= sendCommand(FRET_3RD, WIRE_3RD, SERVO_RELEASE);
+    error &= sendCommand(FRET_3RD, WIRE_4TH, SERVO_RELEASE);
+    error &= sendCommand(FRET_3RD, WIRE_5TH, SERVO_RELEASE);
+    error &= sendCommand(FRET_3RD, WIRE_6TH, SERVO_RELEASE);
+
+    // error &= sendCommand(FRET_4TH, WIRE_1ST, SERVO_RELEASE);
+    // error &= sendCommand(FRET_4TH, WIRE_2ND, SERVO_RELEASE);
+    // error &= sendCommand(FRET_4TH, WIRE_3RD, SERVO_RELEASE);
+    // error &= sendCommand(FRET_4TH, WIRE_4TH, SERVO_RELEASE);
+    // error &= sendCommand(FRET_4TH, WIRE_5TH, SERVO_RELEASE);
+    // error &= sendCommand(FRET_4TH, WIRE_6TH, SERVO_RELEASE);
+  }
+
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+  if (error == ERROR)
+  {
+    for (uint8_t i = 0; i < 20; i++)
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+      HAL_Delay(100);
+    }
+    __NVIC_SystemReset();
+  }
+  else
+  {
+    for (uint8_t i = 0; i < 4; i++)
+    {
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+      HAL_Delay(500);
+    }
+  }
+
 
   ILI9341_Unselect();
   ILI9341_TouchUnselect();
@@ -430,11 +467,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    HAL_Delay(2000);
-    if (sendCommand(3, 1, 1) == false)
-    {
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-    }
+    // HAL_Delay(2000);
+    // if (sendCommand(3, 1, 1) == false)
+    // {
+    //   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    // }
 
     // Set_servo_xp(&servo_k_1_1, 92);
     // HAL_Delay(300);

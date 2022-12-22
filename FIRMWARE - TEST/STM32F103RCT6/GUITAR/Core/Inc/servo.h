@@ -6,6 +6,19 @@
 #define SERVO_MARK_0    30
 #define SERVO_MARK_1    50
 
+#define SERVO_RELEASE   0
+#define SERVO_PRESS     1
+
+#define FRET_3RD        (3)
+#define FRET_4TH        (4)
+
+#define WIRE_1ST        (1)
+#define WIRE_2ND        (2)
+#define WIRE_3RD        (3)
+#define WIRE_4TH        (4)
+#define WIRE_5TH        (5)
+#define WIRE_6TH        (6)
+
 #define W1_S1   (SERVO_MARK_0+7)
 #define W1_S2   (SERVO_MARK_1+4)
 #define W2_S1   (SERVO_MARK_0+7)
